@@ -13,3 +13,18 @@
 /home/nadie/datos/Carpeta nueva/clase_practica/Domino/obj/Debug/net6.0/Domino.pdb
 /home/nadie/datos/Carpeta nueva/clase_practica/Domino/obj/Debug/net6.0/Domino.genruntimeconfig.cache
 /home/nadie/datos/Carpeta nueva/clase_practica/Domino/obj/Debug/net6.0/ref/Domino.dll
+/home/eggy/disco/PRoyecto/Multi-domino/bin/Debug/net6.0/Domino
+/home/eggy/disco/PRoyecto/Multi-domino/bin/Debug/net6.0/Domino.deps.json
+/home/eggy/disco/PRoyecto/Multi-domino/bin/Debug/net6.0/Domino.runtimeconfig.json
+/home/eggy/disco/PRoyecto/Multi-domino/bin/Debug/net6.0/Domino.dll
+/home/eggy/disco/PRoyecto/Multi-domino/bin/Debug/net6.0/ref/Domino.dll
+/home/eggy/disco/PRoyecto/Multi-domino/bin/Debug/net6.0/Domino.pdb
+/home/eggy/disco/PRoyecto/Multi-domino/obj/Debug/net6.0/Domino.csproj.AssemblyReference.cache
+/home/eggy/disco/PRoyecto/Multi-domino/obj/Debug/net6.0/Domino.GeneratedMSBuildEditorConfig.editorconfig
+/home/eggy/disco/PRoyecto/Multi-domino/obj/Debug/net6.0/Domino.AssemblyInfoInputs.cache
+/home/eggy/disco/PRoyecto/Multi-domino/obj/Debug/net6.0/Domino.AssemblyInfo.cs
+/home/eggy/disco/PRoyecto/Multi-domino/obj/Debug/net6.0/Domino.csproj.CoreCompileInputs.cache
+/home/eggy/disco/PRoyecto/Multi-domino/obj/Debug/net6.0/Domino.dll
+/home/eggy/disco/PRoyecto/Multi-domino/obj/Debug/net6.0/ref/Domino.dll
+/home/eggy/disco/PRoyecto/Multi-domino/obj/Debug/net6.0/Domino.pdb
+/home/eggy/disco/PRoyecto/Multi-domino/obj/Debug/net6.0/Domino.genruntimeconfig.cache
