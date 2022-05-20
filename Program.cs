@@ -14,15 +14,15 @@ for(int i=0;i<10;i++)
 
 var table = new NormalTable<int>(basic_keyset);
 
-var player1 = table.GetPlayerKeys();
-var player2 = table.GetPlayerKeys();
-var player3 = table.GetPlayerKeys();
-var player4 = table.GetPlayerKeys();
+var player1 = new Player<int>(table.GetPlayerKeys());
+var player2 = new Player<int>(table.GetPlayerKeys());
+var player3 = new Player<int>(table.GetPlayerKeys());
+var player4 = new Player<int>(table.GetPlayerKeys());
 
 bool game_finished = false;
 int current_player=0;
 int ficha_actual=0;
-IEnumerable<IKey<int>> player_keys = player1;
+IEnumerable<IKey<int>> player_keys = player1.GetKeys();
 while(!game_finished)
 {
 Console.Clear();
@@ -30,17 +30,17 @@ print_player_number(current_player+1);
 switch(current_player)
 {
     case 0:
-        player_keys=player1;
+        player_keys=player1.GetKeys();;
        break;
 
        case 1:
-        player_keys=player2;
+        player_keys=player2.GetKeys();
        break;
        case 2:
-        player_keys=player3;
+        player_keys=player3.GetKeys();
             break;
        case 3:
-         player_keys=player4;
+         player_keys=player4.GetKeys();
        break;       
 }
 print_player_keys(player_keys);
