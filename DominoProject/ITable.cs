@@ -10,4 +10,7 @@ public interface ITable<T>
 	   IEnumerable<IKey<T>> OnTableKeys();
        
 	   IEnumerable<IKey<T>> GetPlayerKeys();
+
+	   IComparer<T> comparer();
+
 }
