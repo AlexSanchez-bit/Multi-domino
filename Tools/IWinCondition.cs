@@ -1,5 +1,5 @@
-public interface IWinCondition<T>
+public interface IWinCondition
 {
-    IPlayer<T> GetWinner();
-    bool GameEnded(IEnumerable<IPlayer<T>> players , ITable<T> mesa);
+    IPlayer GetWinner();
+    bool GameEnded(IEnumerable<IPlayer> players , ITable mesa);
 }

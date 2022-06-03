@@ -1,7 +1,7 @@
-public interface IPlayerSelector<T>
+public interface IPlayerSelector
 {
 
-    void SetPlayerList(IEnumerable<IPlayer<T>> player_list);
-    IPlayer<T> GetNextPlayer();
+    void SetPlayerList(IEnumerable<IPlayer> player_list);
+    IPlayer GetNextPlayer();
 
 }

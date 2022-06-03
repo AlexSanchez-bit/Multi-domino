@@ -1,27 +1,27 @@
 
 
 
-public class NormalPlayer<T> : IPlayer<T>
+public class NormalPlayer : IPlayer
 {
 
     string name;
-    List<IKey<T>> hand;
+    List<IKey> hand;
     public NormalPlayer(string name)
     {
-        name=name;
-        hand=new List<IKey<T>>();
+        this.name=name;
+        hand=new List<IKey>();
     }
     public string GetIdentifier()
     {
         return name;
     }
 
-    public IEnumerable<IKey<T>> GetKeys()
+    public IEnumerable<IKey> GetKeys()
     {
       return this.hand;
     }
 
-    public void SetData(IEnumerable<IKey<T>> player_hand)
+    public void SetData(IEnumerable<IKey> player_hand)
     {
        foreach(var a in player_hand)
        {
@@ -29,7 +29,7 @@ public class NormalPlayer<T> : IPlayer<T>
        }
     }
 
-    public void SimulateRound(ITable<T> table)
+    public void SimulateRound(ITable table)
     {
         foreach(var a in hand)
         {

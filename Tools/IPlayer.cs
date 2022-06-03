@@ -1,10 +1,10 @@
-public interface IPlayer<T>
+public interface IPlayer
 {
     string GetIdentifier();
-    void SimulateRound(ITable<T> table);
+    void SimulateRound(ITable table);
 
-    IEnumerable<IKey<T>> GetKeys();
-    void SetData(IEnumerable<IKey<T>> player_hand);    
+    IEnumerable<IKey> GetKeys();
+    void SetData(IEnumerable<IKey> player_hand);    
 
 
 }

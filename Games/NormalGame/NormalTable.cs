@@ -2,80 +2,77 @@
 
 
 
-class NormalTable<T> : ITable<T>
+class NormalTable : ITable
 {
 
-    LinkedList<IKey<T>> board;
-    Stack<T> right;
-    Stack<T> left;
+    LinkedList<IKey> board;
+    IFace right;
+    IFace left;
     public NormalTable()
     {
-        board = new LinkedList<IKey<T>>();
-        right=new Stack<T>();
-        left=new Stack<T>();
+        board = new LinkedList<IKey>();
     }
-    public void PlayKey(IKey<T> key)
+    public void PlayKey(IKey key)
     {
         if(ValidPlay(key))
         {
              Insert(key);
-            board.Append(key);           
+            board.AddLast(key);     
+              
+                                              
         }
     }
 
-    private void Insert(IKey<T> key)
+    private void Insert(IKey key)
     {
-        if(board.Count==0)
-        {
-            right.Push(key.GetFace(0));
-            left.Push(key.GetFace(1));
-        }
+      if(board.Count==0)
+      {
+          right=(key.GetFace(0));
+          left=(key.GetFace(1));
+      }
+       
+      var faces = key.GetAllFaces();
 
-        T left_side=left.Peek();
-        T right_side = right.Peek();
-        var key_faces = key.GetAllFaces();
-        if( key_faces.Contains(left_side))
-        {
-            foreach(var a in key_faces)
-            {
-                if(!a.Equals(left_side))
-                {
-                    left.Push(a);
-                }
-            }
-            return;
-        }
-         foreach(var a in key_faces)
-            {
-                if(!a.Equals(right_side))
-                {
-                    right.Push(a);
-                }
-            }
+       bool derecha = faces.Any((elem)=>elem.Equals(right));
 
+       if(derecha)
+       {
+           foreach(var a in faces)
+            {
+                if(!a.Equals(right))
+                {
+                    right=a;                  
+                }
+            }     
+              return;   
+       }    
+        foreach(var a in faces)
+            {
+                if(!a.Equals(left))left=a;
+            }
     }
 
     public void Reset()
     {
       board.Clear();
-      right.Clear();
-      left.Clear();
     }
 
-    public bool ValidPlay(IKey<T> key)
+    public bool ValidPlay(IKey key)
     {
         if(board.Count()==0)return true;
-
-        return key.GetAllFaces().Any((elem)=>right.Contains(elem)||left.Contains(elem));
-    }
-   
-    IEnumerable<T> ITable<T>.CurrentFaces()
-    {
-       return new T[]{right.Peek(),left.Peek()};
+        return key.GetAllFaces().Any((elem)=>right.Equals(elem)||left.Equals(elem));
     }
 
-    IEnumerable<IKey<T>> ITable<T>.OnTableKeys()
+    public IEnumerable<IFace> CurrentFaces()
     {
-        return board;
+         return new IFace[]{right,left};
+    }
+
+    public IEnumerable<IKey> OnTableKeys()
+    {
+       return board;
     }
 }
+
+
+  

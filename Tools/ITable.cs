@@ -1,10 +1,10 @@
 
-public interface ITable<T>
+public interface ITable
 {
-    bool ValidPlay(IKey<T> key);
-    IEnumerable<T> CurrentFaces();
-    IEnumerable<IKey<T>> OnTableKeys();
-    void PlayKey(IKey<T> key);    
+    bool ValidPlay(IKey key);
+    IEnumerable<IFace> CurrentFaces();
+    IEnumerable<IKey> OnTableKeys();
+    void PlayKey(IKey key);    
 
     void Reset();
  }

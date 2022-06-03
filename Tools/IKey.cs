@@ -1,6 +1,6 @@
-public interface IKey<T>
+public interface IKey
 {
-    T GetFace(int i);
-    IEnumerable<T> GetAllFaces();
+    IFace GetFace(int i);
+    IEnumerable<IFace> GetAllFaces();
     int GetValue();
 }

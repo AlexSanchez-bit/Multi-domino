@@ -1,37 +1,34 @@
 
 
-public class NormalKey : IKey<int>
+public class NormalKey : IKey
 {
 
-    int[] faces;
+    IFace[] faces;
 
-    public NormalKey(int faceA,int faceB)
+    public bool Equals(IKey other)
     {
-        faces=new int[2];
-        faces[0]=faceA;
-        faces[1]=faceB;
+        return other.GetAllFaces().All((elem)=>elem.Equals(faces[0])||elem.Equals(faces[1]));
     }
-    public IEnumerable<int> GetAllFaces()
+    public NormalKey(int sideA,int sideB)
+    {
+         faces = new NumericFace[2];
+         faces[0]=new NumericFace(sideA);
+         faces[1] = new NumericFace(sideB);
+    }
+    public IEnumerable<IFace> GetAllFaces()
     {
         return faces;
     }
 
-    public int GetFace(int i)
+    public IFace GetFace(int i)
     {
-        if(i<faces.Length)
-        {
-            return faces[i];
-        }
-        throw new IndexOutOfRangeException(string.Format("cara invalida seleccionada en la ficha : {0}|{1}",faces[0],faces[1]));
+      if(i< faces.Length)return faces[i];
+
+      throw new Exception("error de indexacion");
     }
 
     public int GetValue()
     {
-         return faces[0]+faces[1];
-    }
-
-    public bool Equals(IKey<int> key)
-    {
-        return key.GetFace(0)==this.GetFace(0) && key.GetFace(1)==this.GetFace(1);
+       return faces[0].GetValue()+faces[1].GetValue();
     }
 }

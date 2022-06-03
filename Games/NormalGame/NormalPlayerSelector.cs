@@ -1,24 +1,24 @@
 
 
 
-class NormalPlayerSelector<T> : IPlayerSelector<T>
+class NormalPlayerSelector : IPlayerSelector
 {
 
-    List<IPlayer<T>> jugadores;
+    List<IPlayer> jugadores;
 
     public NormalPlayerSelector()
     {
-        jugadores=new List<IPlayer<T>>();
+        jugadores=new List<IPlayer>();
     }
     int index=0;
-    public IPlayer<T> GetNextPlayer()
+    public IPlayer GetNextPlayer()
     {
        var ret = jugadores[index];
-       index=(index+1)%jugadores.Count;
+       index=(index+1+jugadores.Count)%jugadores.Count;
        return ret;
     }
 
-    public void SetPlayerList(IEnumerable<IPlayer<T>> player_list)
+    public void SetPlayerList(IEnumerable<IPlayer> player_list)
     {
        foreach(var a in player_list)
        {
