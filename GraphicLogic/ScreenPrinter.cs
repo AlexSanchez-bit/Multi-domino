@@ -1,4 +1,4 @@
-public class ScreenPrinter:ITableObserver,IPlayerChangedObserver
+public class ScreenPrinter:ITableObserver ,IPlayerChangedObserver
 {
 
 
@@ -44,22 +44,25 @@ public class ScreenPrinter:ITableObserver,IPlayerChangedObserver
 
    }
 
-   public static void PrintHorizontalKey(IKey key)
+   public void PrintHorizontalKey(IKey key)
    {
         foreach(var b in key.GetAllFaces())
               Console.Write(b.GetRepresentation());
      Console.Write(" ");  
    }
 
-    public void Update(IEvent<IKey> eventinfo)
+
+#region implementations
+    public void Update(KeyPlayedEvent eventinfo)
     {
-        var data = eventinfo.GetEventData();
+        var data = eventinfo.GetEventData().Item1;
         foreach(var a in data.GetAllFaces())
         {           
             game_board+=a.GetRepresentation();
 
         }      
     }
+
 
     public void Update(IEvent<IPlayer> eventinfo)
     {       
@@ -78,4 +81,11 @@ public class ScreenPrinter:ITableObserver,IPlayerChangedObserver
             this.game_board+=a.GetRepresentation();
         }
     }
+
+    public void SetSpaces(int spacesnumb)
+    {
+       
+    }
+
+    #endregion endImplementors
 }

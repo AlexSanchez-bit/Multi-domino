@@ -1,5 +1,5 @@
 
-public interface IPlayerChangedObserver:IObserver<IPlayer>
+public interface IPlayerChangedObserver:IObserver<IEvent<IPlayer>>
 {
 
 }

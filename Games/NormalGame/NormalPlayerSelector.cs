@@ -5,13 +5,23 @@ class NormalPlayerSelector : IPlayerSelector ,IPlayerChanged
 {
 
     List<IPlayer> jugadores;
-    LinkedList<IObserver<IPlayer>> observers;
+    LinkedList<IPlayerChangedObserver> observers;
     int index=0;
 
     public NormalPlayerSelector()
     {
         jugadores=new List<IPlayer>();
-        observers = new LinkedList<IObserver<IPlayer>>();
+        observers = new LinkedList<IPlayerChangedObserver>();
+    }
+
+    public void attach(IPlayerChangedObserver observer)
+    {
+        observers.AddLast(observer);
+    }
+
+    public void dettach(IPlayerChangedObserver obsetver)
+    {
+        observers.Remove(obsetver);
     }
 
     public IPlayer GetNextPlayer()
@@ -22,6 +32,19 @@ class NormalPlayerSelector : IPlayerSelector ,IPlayerChanged
        return ret;
     }
 
+    public void notify(IPlayer current)
+    {
+        foreach(var a in observers)
+        {
+            a.Update(new CustomEvent<IPlayer>(current));
+        }
+    }
+
+    public void notify()
+    {
+        throw new NotImplementedException();
+    }
+
     public void SetPlayerList(IEnumerable<IPlayer> player_list)
     {
        foreach(var a in player_list)
@@ -30,26 +53,5 @@ class NormalPlayerSelector : IPlayerSelector ,IPlayerChanged
        }
     }
 
-    public void attach(IObserver<IPlayer> observer)
-    {
-        observers.AddLast(observer);
-    }
-
-    public void dettach(IObserver<IPlayer> obsetver)
-    {
-     observers.Remove(obsetver);
-    }
-
-    public void notify()
-    {
-       
-    }
-
-    public void notify(IPlayer current)
-    {
-         foreach(var a in observers)
-        {
-            a.Update(new CustomEvent<IPlayer>(current));
-        }
-    }
+  
 }

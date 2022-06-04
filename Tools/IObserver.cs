@@ -1,5 +1,5 @@
 
 public interface IObserver<T>
 {
-    void Update(IEvent<T> eventinfo);
+    void Update(T eventinfo);
 }

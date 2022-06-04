@@ -1,6 +1,6 @@
 
 
-public interface ITableEventManager:IObservable<(IKey,int)>
+public interface ITableEventManager:IObservable<ITableObserver,KeyPlayedEvent>
 {
    void notify(IKey key,int position);   
 }

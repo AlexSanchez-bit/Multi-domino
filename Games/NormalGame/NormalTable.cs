@@ -9,11 +9,11 @@ class NormalTable : ITable
     IFace right;
     IFace left;
 
-    LinkedList<IObserver<(IKey,int)>> observers;
+    LinkedList<IObserver<KeyPlayedEvent>> observers;
     public NormalTable()
     {
         board = new LinkedList<IKey>();
-        observers = new LinkedList<IObserver<(IKey,int)>>();
+        observers = new LinkedList<IObserver<KeyPlayedEvent>>();
     }
     public void PlayKey(IKey key)
     {
@@ -39,19 +39,22 @@ class NormalTable : ITable
 
        if(derecha)
        {
+           notify(key,1); 
            foreach(var a in faces)
             {
                 if(!a.Equals(right))
                 {
                     right=a;                  
                 }
-            }     
+            }    
+            
               return;   
        }    
         foreach(var a in faces)
             {
                 if(!a.Equals(left))left=a;
             }
+             notify(key,2); 
     }
 
     public void Reset()
@@ -74,17 +77,7 @@ class NormalTable : ITable
     {
        return board;
     }
-
-    public void attach(IObserver<(IKey,int)> observer)
-    {
-        observers.AddLast(observer);       
-    }
-
-    public void dettach(IObserver<(IKey,int)> obsetver)
-    {
-        observers.Remove(obsetver);
-    }
-
+   
     public void notify()
     {         
        
@@ -98,6 +91,17 @@ class NormalTable : ITable
             a.Update(new KeyPlayedEvent(key,position));
         }
        
+    }
+
+    public void attach(ITableObserver observer)
+    {
+        observer.SetSpaces(2);
+         observers.AddLast(observer);
+    }
+
+    public void dettach(ITableObserver obsetver)
+    {
+         observers.Remove(obsetver);
     }
 }
 

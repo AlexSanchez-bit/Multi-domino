@@ -1,7 +1,6 @@
 
 
-public interface ITableObserver:IObserver<(IKey,int)>
+public interface ITableObserver:IObserver<KeyPlayedEvent>
 {
-    void GetSpaces(int spacesnumb);
-    void Update(IEvent<(IKey,int)> eventinfo);
+    void SetSpaces(int spacesnumb);  
 }

@@ -1,7 +1,7 @@
 ﻿var screen = new ScreenPrinter();
 var winC = new GeneralWinCondition();
 var Pselect = new NormalPlayerSelector();
-Pselect.attach(screen);
+//Pselect.attach(screen);
 var board = new NormalTable();
 board.attach(screen);
 var player_list = new NormalPlayer[]{new NormalPlayer("arturo"),new NormalPlayer("maria"),new NormalPlayer("jose"),new NormalPlayer("bernard")};
