@@ -1,7 +1,7 @@
 
 
-public interface ITableObserver:IObserver<IKey>
+public interface ITableObserver:IObserver<(IKey,int)>
 {
     void GetSpaces(int spacesnumb);
-    void Update(IKey key,int space);
+    void Update(IEvent<(IKey,int)> eventinfo);
 }

@@ -9,11 +9,11 @@ class NormalTable : ITable
     IFace right;
     IFace left;
 
-    LinkedList<IObserver<IKey>> observers;
+    LinkedList<IObserver<(IKey,int)>> observers;
     public NormalTable()
     {
         board = new LinkedList<IKey>();
-        observers = new LinkedList<IObserver<IKey>>();
+        observers = new LinkedList<IObserver<(IKey,int)>>();
     }
     public void PlayKey(IKey key)
     {
@@ -21,7 +21,7 @@ class NormalTable : ITable
         {
              Insert(key);
             board.AddLast(key);                   
-            notify();                                              
+           // notify();  esto manda la ultima ficha a la interfaz pero no a la mesa                                            
         }
     }
 
@@ -75,21 +75,27 @@ class NormalTable : ITable
        return board;
     }
 
-    public void attach(IObserver<IKey> observer)
+    public void attach(IObserver<(IKey,int)> observer)
     {
         observers.AddLast(observer);       
     }
 
-    public void dettach(IObserver<IKey> obsetver)
+    public void dettach(IObserver<(IKey,int)> obsetver)
     {
         observers.Remove(obsetver);
     }
 
     public void notify()
     {         
-        foreach(var a in observers)
+       
+       
+    }
+
+    public void notify(IKey key, int position)
+    {
+         foreach(var a in observers)
         {
-            a.Update(new KeyPlayedEvent(board.Last.Value));
+            a.Update(new KeyPlayedEvent(key,position));
         }
        
     }

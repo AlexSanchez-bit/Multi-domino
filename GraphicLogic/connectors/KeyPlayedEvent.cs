@@ -1,15 +1,17 @@
 
-public class KeyPlayedEvent : IEvent<IKey>
+public class KeyPlayedEvent : IEvent<(IKey,int)>
 {
 
     IKey playedKey;
-
-    public KeyPlayedEvent(IKey jugada)
+    int position;   
+    public KeyPlayedEvent(IKey jugada,int position)
     {
         playedKey=jugada;
+        this.position=position;
     }
-    public IKey GetEventData()
+
+    public (IKey, int) GetEventData()
     {
-        return playedKey;
+        return (playedKey,position);
     }
 }

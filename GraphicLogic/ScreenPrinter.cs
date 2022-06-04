@@ -36,6 +36,7 @@ public class ScreenPrinter:ITableObserver,IPlayerChangedObserver
            PrintHorizontalKey(a);           
         }
        Console.WriteLine(" "); 
+       Thread.Sleep(900);
     }
    
    private void PrintVerticalKey(IKey key)
@@ -70,8 +71,11 @@ public class ScreenPrinter:ITableObserver,IPlayerChangedObserver
         throw new NotImplementedException();
     }
 
-    public void Update(IKey key, int space)
+    public void Update(IEvent<(IKey, int)> eventinfo)
     {
-        throw new NotImplementedException();
+        foreach(var a in eventinfo.GetEventData().Item1.GetAllFaces())
+        {
+            this.game_board+=a.GetRepresentation();
+        }
     }
 }
