@@ -2,10 +2,9 @@ public class ScreenPrinter:ITableObserver ,IPlayerChangedObserver
 {
 
 
-    string game_board;
+    List<IKey>[] game_board;    
     public ScreenPrinter()
-    {  
-        game_board="";       
+    {         
     }
 
     public void Start()
@@ -19,13 +18,9 @@ public class ScreenPrinter:ITableObserver ,IPlayerChangedObserver
         }
     }
     
-    public void PrintTable(ITable board)
+    public void PrintTable()
     {
-        int screensize=Console.WindowWidth-10;
-        foreach(var key in board.OnTableKeys())
-        {
-            PrintHorizontalKey(key);
-        }
+       
     }
     public void PrintPlayer(IPlayer player)
     {
@@ -35,8 +30,7 @@ public class ScreenPrinter:ITableObserver ,IPlayerChangedObserver
         {
            PrintHorizontalKey(a);           
         }
-       Console.WriteLine(" "); 
-       Thread.Sleep(900);
+       Console.WriteLine(" ");       
     }
    
    private void PrintVerticalKey(IKey key)
@@ -55,12 +49,19 @@ public class ScreenPrinter:ITableObserver ,IPlayerChangedObserver
 #region implementations
     public void Update(KeyPlayedEvent eventinfo)
     {
-        var data = eventinfo.GetEventData().Item1;
-        foreach(var a in data.GetAllFaces())
-        {           
-            game_board+=a.GetRepresentation();
-
-        }      
+          var key = eventinfo.GetEventData().Item1;
+        var index = eventinfo.GetEventData().Item2;
+        if(game_board.All((elem)=>elem.Count()==0))
+        {
+             foreach(var a in game_board)
+             {
+               a.Add(key);
+             }
+        }else
+        {
+            game_board[index].Add(key);
+        }
+           
     }
 
 
@@ -69,22 +70,16 @@ public class ScreenPrinter:ITableObserver ,IPlayerChangedObserver
         this.PrintPlayer(eventinfo.GetEventData());
     }
 
-    public void GetSpaces(int spacesnumb)
-    {
-        throw new NotImplementedException();
-    }
 
-    public void Update(IEvent<(IKey, int)> eventinfo)
-    {
-        foreach(var a in eventinfo.GetEventData().Item1.GetAllFaces())
-        {
-            this.game_board+=a.GetRepresentation();
-        }
-    }
+  
 
     public void SetSpaces(int spacesnumb)
     {
-       
+       game_board=new List<IKey>[spacesnumb];
+        for(int i=0;i<spacesnumb;i++)
+        {
+            game_board[i]=new List<IKey>();
+        }
     }
 
     #endregion endImplementors

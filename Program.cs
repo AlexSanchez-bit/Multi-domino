@@ -30,6 +30,6 @@ mainThread.Start();
 screen.Start();
 mainThread.Join();
 screen.PrintPlayer(winC.GetWinner());
-screen.PrintTable(board);
+
 
 
