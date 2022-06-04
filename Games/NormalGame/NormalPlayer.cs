@@ -37,6 +37,7 @@ public class NormalPlayer : IPlayer
             {
                 table.PlayKey(a);
                 hand.Remove(a);
+                Thread.Sleep(1555);
                 return;
             }
         }

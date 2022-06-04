@@ -1,9 +1,22 @@
-public class ScreenPrinter
+public class ScreenPrinter:ITableObserver
 {
 
+
+    string game_board;
     public ScreenPrinter()
     {  
+        game_board="";       
+    }
 
+    public void Start()
+    {
+         while(true)
+        {
+            Console.Clear();
+            foreach(var a in game_board)
+            {Console.Write(a);}           
+            Thread.Sleep(1000);
+        }
     }
     
     public void PrintTable(ITable board)
@@ -36,4 +49,14 @@ public class ScreenPrinter
               Console.Write(b.GetRepresentation());
      Console.Write(" ");  
    }
+
+    public void Update(IEvent<IKey> eventinfo)
+    {
+        var data = eventinfo.GetEventData();
+        foreach(var a in data.GetAllFaces())
+        {           
+            game_board+=a.GetRepresentation();
+
+        }      
+    }
 }

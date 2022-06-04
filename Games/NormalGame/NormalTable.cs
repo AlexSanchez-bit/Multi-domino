@@ -8,18 +8,20 @@ class NormalTable : ITable
     LinkedList<IKey> board;
     IFace right;
     IFace left;
+
+    LinkedList<IObserver<IKey>> observers;
     public NormalTable()
     {
         board = new LinkedList<IKey>();
+        observers = new LinkedList<IObserver<IKey>>();
     }
     public void PlayKey(IKey key)
     {
         if(ValidPlay(key))
         {
              Insert(key);
-            board.AddLast(key);     
-              
-                                              
+            board.AddLast(key);                   
+            notify();                                              
         }
     }
 
@@ -71,6 +73,25 @@ class NormalTable : ITable
     public IEnumerable<IKey> OnTableKeys()
     {
        return board;
+    }
+
+    public void attach(IObserver<IKey> observer)
+    {
+        observers.AddLast(observer);       
+    }
+
+    public void dettach(IObserver<IKey> obsetver)
+    {
+        observers.Remove(obsetver);
+    }
+
+    public void notify()
+    {         
+        foreach(var a in observers)
+        {
+            a.Update(new KeyPlayedEvent(board.Last.Value));
+        }
+       
     }
 }
 

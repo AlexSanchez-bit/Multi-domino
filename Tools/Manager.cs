@@ -42,8 +42,7 @@
     public void SimulateRound()
     {
         var currentPlayer= next_player.GetNextPlayer();
-        currentPlayer.SimulateRound(board);
-        Console.WriteLine("Turno de {0}",currentPlayer.GetIdentifier());
+        currentPlayer.SimulateRound(board);       
     }
 
  }
