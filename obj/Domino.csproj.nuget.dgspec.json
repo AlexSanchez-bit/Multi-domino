@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/eggy/disco/PRoyecto/Multi-domino/Domino.csproj": {}
+    "/home/nadie/datos/Carpeta nueva/clase_practica/Domino/Domino.csproj": {}
   },
   "projects": {
-    "/home/eggy/disco/PRoyecto/Multi-domino/Domino.csproj": {
+    "/home/nadie/datos/Carpeta nueva/clase_practica/Domino/Domino.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/eggy/disco/PRoyecto/Multi-domino/Domino.csproj",
+        "projectUniqueName": "/home/nadie/datos/Carpeta nueva/clase_practica/Domino/Domino.csproj",
         "projectName": "Domino",
-        "projectPath": "/home/eggy/disco/PRoyecto/Multi-domino/Domino.csproj",
-        "packagesPath": "/home/eggy/.nuget/packages/",
-        "outputPath": "/home/eggy/disco/PRoyecto/Multi-domino/obj/",
+        "projectPath": "/home/nadie/datos/Carpeta nueva/clase_practica/Domino/Domino.csproj",
+        "packagesPath": "/home/nadie/.nuget/packages/",
+        "outputPath": "/home/nadie/datos/Carpeta nueva/clase_practica/Domino/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/eggy/.nuget/NuGet/NuGet.Config"
+          "/home/nadie/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -52,7 +52,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.201/RuntimeIdentifierGraph.json"
         }
       }
     }
