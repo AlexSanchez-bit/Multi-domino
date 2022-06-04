@@ -4,7 +4,7 @@ var Pselect = new NormalPlayerSelector();
 Pselect.attach(screen);
 var board = new NormalTable();
 board.attach(screen);
-var player_list = new NormalPlayer[]{new NormalPlayer("arturo"),new NormalPlayer("maria")};//,new NormalPlayer("jose"),new NormalPlayer("bernard")};
+var player_list = new NormalPlayer[]{new NormalPlayer("arturo"),new NormalPlayer("maria"),new NormalPlayer("jose"),new NormalPlayer("bernard")};
 var manager = new Manager(board,player_list,winC,Pselect,KeyGenerators.NormalGenerator);
 var selected=new List<IKey>();
 manager.InitializeGame((player,fichas)=>{
