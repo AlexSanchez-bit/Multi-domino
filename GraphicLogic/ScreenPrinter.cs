@@ -1,4 +1,4 @@
-public class ScreenPrinter:ITableObserver
+public class ScreenPrinter:ITableObserver,IPlayerChangedObserver
 {
 
 
@@ -29,7 +29,7 @@ public class ScreenPrinter:ITableObserver
     }
     public void PrintPlayer(IPlayer player)
     {
-        Console.WriteLine(player.GetIdentifier()); 
+        Console.WriteLine("turno de :{0}",player.GetIdentifier()); 
         var keyset = player.GetKeys();
         foreach(var a in keyset)
         {
@@ -58,5 +58,20 @@ public class ScreenPrinter:ITableObserver
             game_board+=a.GetRepresentation();
 
         }      
+    }
+
+    public void Update(IEvent<IPlayer> eventinfo)
+    {       
+        this.PrintPlayer(eventinfo.GetEventData());
+    }
+
+    public void GetSpaces(int spacesnumb)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Update(IKey key, int space)
+    {
+        throw new NotImplementedException();
     }
 }
