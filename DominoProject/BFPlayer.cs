@@ -1,4 +1,4 @@
-public class BFPlayer<T> : IPlayer<T>
+/*public class BFPlayer<T> //: IPlayer<T>
 {
     public  List<IKey<T>> Keyset;
     IComparer<IKey<T>> comparer;    
@@ -49,3 +49,4 @@ public class BFPlayer<T> : IPlayer<T>
         return this.Keyset;
     }
 }
+*/
