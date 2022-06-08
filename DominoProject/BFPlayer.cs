@@ -1,25 +1,24 @@
-public class BFPlayer<T> : IPlayer<T>
+public class BFPlayer<T> : IPlayer
 {
-    public  List<IKey<T>> Keyset;
-    IComparer<IKey<T>> comparer;    
-    List<IKey<T>> ValidKeys;
+    public  List<IKey> Keyset;
+    string name;
+    IComparer<IKey> comparer;    
+    List<IKey> ValidKeys;
     
-    public BFPlayer(IEnumerable<IKey<T>> keyset,IComparer<IKey<T>> comparer)
+    public BFPlayer(string name,IComparer<IKey> comparer)
     {
-        this.Keyset =  new List<IKey<T>>();
-        foreach(var item  in keyset)
-        {
-            this.Keyset.Add(item);
-        }
+      
+        this.name = name;
+        Keyset = new List<IKey>();
         this.comparer =  comparer;
     }
-    public void Play(ITable<T> board)
+    public void Play(ITable board)
     {
-        ValidKeys =  new List<IKey<T>>();
-        IKey<T> bestKey = null;
+        ValidKeys =  new List<IKey>();
+        IKey bestKey = null;
         foreach(var item in Keyset)
         {
-            if(board.IsValid(item))
+            if(board.ValidPlay(item))
             {
                 ValidKeys.Add(item);
             }
@@ -44,8 +43,36 @@ public class BFPlayer<T> : IPlayer<T>
                  return;
 
     }
-    public IEnumerable<IKey<T>> GetKeys()
+    public IEnumerable<IKey> GetKeys()
     {
         return this.Keyset;
+    }
+
+    public string GetIdentifier()
+    {
+        return this.name;
+    }
+
+    public void SimulateRound(ITable table)
+    {
+       foreach(var a in Keyset)
+        {
+            if(table.ValidPlay(a))
+            {
+                table.PlayKey(a);
+                Keyset.Remove(a);
+                Thread.Sleep(1555);
+                return;
+            }
+        }
+    }
+
+    public void SetData(IEnumerable<IKey> player_hand)
+    {
+        foreach(var a in player_hand)
+        {
+            Keyset.Add(a);
+        }
+        
     }
 }
