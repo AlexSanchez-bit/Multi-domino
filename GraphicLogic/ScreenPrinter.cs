@@ -21,8 +21,15 @@ public class ScreenPrinter:ITableObserver ,IPlayerChangedObserver
     {
         int width = Console.WindowWidth;
         int height = Console.WindowHeight;
-        Console.SetCursorPosition(width/2,height/2);
-      Console.WriteLine("la mesa XD");
+        int index=0;
+        foreach(var a in game_board ){
+        Console.SetCursorPosition(0,height/2+index);
+          foreach(var b in a)
+          {
+              PrintHorizontalKey(b);
+          }
+          index++;
+        }
         Console.SetCursorPosition(0,0);
     }
 
