@@ -2,10 +2,9 @@
 var manager = game.BuildGame();
 var screen = game.GetGraphicalInterface();
 var mainThread = new Thread(()=>{
-for(int i=0;i<100;i++)
-{
-    manager.SimulateRound();
-}
+      var winner=manager.SimulateGame();
+      Console.Clear();
+      Console.WriteLine(winner.GetIdentifier());
 });
 mainThread.Start();
 screen.Start();

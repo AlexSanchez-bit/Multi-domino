@@ -17,6 +17,7 @@ public class ConfigFile
         
            PlayerSelector.attach(GraphicPrinter);
         GameTable.attach(GraphicPrinter);
+        WinCondition.attach(GraphicPrinter);
 
     }
 

@@ -21,7 +21,7 @@ class NormalTable : ITable
         {
              Insert(key);
             board.AddLast(key);                   
-           // notify();  esto manda la ultima ficha a la interfaz pero no a la mesa                                            
+           // notify();  
         }
     }
 
@@ -31,6 +31,8 @@ class NormalTable : ITable
       {
           right=(key.GetFace(0));
           left=(key.GetFace(1));
+           notify(key,1); 
+           return;
       }
        
       var faces = key.GetAllFaces();
@@ -39,14 +41,12 @@ class NormalTable : ITable
 
        if(derecha)
        {
-           notify(key,1); 
            foreach(var a in faces)
             {
                 if(!a.Equals(right))
-                {
-                    right=a;                  
-                }
+                              right=a;                  
             }    
+           notify(key,1); 
             
               return;   
        }    
@@ -78,9 +78,12 @@ class NormalTable : ITable
        return board;
     }
    
-    public void notify()
+    public void notify(KeyPlayedEvent eventdata)
     {         
-       
+       foreach(var a in observers)
+       {
+           a.Update(eventdata);
+       }
        
     }
 

@@ -1,10 +1,10 @@
-public class ScreenPrinter:ITableObserver ,IPlayerChangedObserver
+public class ScreenPrinter:ITableObserver ,IPlayerChangedObserver,IWinnerObserver
 {
 
 
-    List<IKey>[] game_board;    
+    List<IFace>[] game_board;    
     public ScreenPrinter()
-    {         
+    {        
     }
 
     public void Start()
@@ -26,7 +26,7 @@ public class ScreenPrinter:ITableObserver ,IPlayerChangedObserver
         Console.SetCursorPosition(0,height/2+index);
           foreach(var b in a)
           {
-              PrintHorizontalKey(b);
+              Console.Write(b.GetRepresentation());
           }
           index++;
         }
@@ -75,11 +75,32 @@ public class ScreenPrinter:ITableObserver ,IPlayerChangedObserver
         {
              foreach(var a in game_board)
              {
-               a.Add(key);
+                 foreach(var b in key.GetAllFaces())
+                     a.Add(b);
              }
         }else
         {
-            game_board[index].Add(key);
+            var faces = key.GetAllFaces();
+            foreach(var a in game_board)
+            {
+                if(faces.Any((elem)=>elem.Equals(a.Last())||elem.Equals(a.Last())))
+                {
+                    if(key.GetFace(0).Equals(a.Last()))
+                    {
+                        foreach(var i in faces)
+                            a.Add(i);
+                    }   
+                    else
+                    {
+                        for(int i=faces.Count()-1 ;i>=0;i--)
+                        {
+                            a.Add(key.GetFace(i));
+                        }
+                        
+                    }
+                    return;
+                }
+            }
         }
            
     }
@@ -91,14 +112,19 @@ public class ScreenPrinter:ITableObserver ,IPlayerChangedObserver
     }
 
 
-  
+     public void Update(IPlayer eventinfo)
+    {       
+        Console.WriteLine(eventinfo.GetIdentifier());
+    }
+
+
 
     public void SetSpaces(int spacesnumb)
     {
-       game_board=new List<IKey>[spacesnumb];
+       game_board=new List<IFace>[spacesnumb];
         for(int i=0;i<spacesnumb;i++)
         {
-            game_board[i]=new List<IKey>();
+            game_board[i]=new List<IFace>();
         }
     }
 

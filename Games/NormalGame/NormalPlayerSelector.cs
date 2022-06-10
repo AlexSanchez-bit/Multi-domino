@@ -28,15 +28,15 @@ class NormalPlayerSelector : IPlayerSelector ,IPlayerChanged
     {
        var ret = jugadores[index];
        index=(index+1+jugadores.Count)%jugadores.Count;
-       notify(ret);
+       notify(new CustomEvent<IPlayer>(ret));
        return ret;
     }
 
-    public void notify(IPlayer current)
+    public void notify(IEvent<IPlayer> current)
     {
         foreach(var a in observers)
         {
-            a.Update(new CustomEvent<IPlayer>(current));
+            a.Update(current);
         }
     }
 

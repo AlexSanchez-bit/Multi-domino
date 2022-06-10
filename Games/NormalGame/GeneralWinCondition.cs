@@ -3,10 +3,12 @@
 public class GeneralWinCondition : IWinCondition
 {
     IPlayer winner;
+    List<IWinnerObserver> observers;
     int higherScore=int.MinValue;
 
     public GeneralWinCondition()
     {
+        observers= new List<IWinnerObserver>();
         winner = new NormalPlayer("error");
     }
     public bool GameEnded(IEnumerable<IPlayer> players, ITable mesa)
@@ -34,8 +36,8 @@ public class GeneralWinCondition : IWinCondition
             }
 
         }
-         Console.WriteLine("ya nadie tuvo jugadas");
-        return false;       
+         notify(winner);
+        return true;       
     }
 
 private int PlayerHandValue(IPlayer player)
@@ -59,5 +61,23 @@ private int PlayerHandValue(IPlayer player)
     public IPlayer GetWinner()
     {
         return winner;
+    }
+
+    public void attach(IWinnerObserver observer)
+    {
+        observers.Add(observer);
+    }
+
+    public void dettach(IWinnerObserver obsetver)
+    {
+        observers.Remove(obsetver);
+    }
+
+    public void notify(IPlayer eventdata)
+    {
+       foreach(var a in observers)
+       {
+           a.Update(eventdata);
+       }
     }
 }

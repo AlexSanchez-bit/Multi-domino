@@ -33,7 +33,7 @@
     }
     public IPlayer SimulateGame()
     {
-        while(win_condition.GameEnded(player_list,board))
+        while(!win_condition.GameEnded(player_list,board))
         {
                 SimulateRound();
         }
