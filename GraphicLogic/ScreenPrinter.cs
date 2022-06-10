@@ -1,15 +1,16 @@
-public class ScreenPrinter:ITableObserver ,IPlayerChangedObserver,IWinnerObserver
+public class ScreenPrinter:IScreen
 {
 
 
     List<IFace>[] game_board;    
+    bool ended =false;
     public ScreenPrinter()
     {        
     }
 
     public void Start()
     {
-         while(true)
+         while(!ended)
         {
             Console.Clear();
             PrintTable();
@@ -126,6 +127,11 @@ public class ScreenPrinter:ITableObserver ,IPlayerChangedObserver,IWinnerObserve
         {
             game_board[i]=new List<IFace>();
         }
+    }
+
+    public void Stop()
+    {
+        ended=true;
     }
 
     #endregion endImplementors
