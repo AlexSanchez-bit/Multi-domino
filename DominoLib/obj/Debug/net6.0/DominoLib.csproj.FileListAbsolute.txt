@@ -1,0 +1,12 @@
+/home/nadie/datos/Carpeta nueva/clase_practica/Domino/DominoLib/bin/Debug/net6.0/DominoLib.deps.json
+/home/nadie/datos/Carpeta nueva/clase_practica/Domino/DominoLib/bin/Debug/net6.0/DominoLib.dll
+/home/nadie/datos/Carpeta nueva/clase_practica/Domino/DominoLib/bin/Debug/net6.0/DominoLib.pdb
+/home/nadie/datos/Carpeta nueva/clase_practica/Domino/DominoLib/obj/Debug/net6.0/DominoLib.csproj.AssemblyReference.cache
+/home/nadie/datos/Carpeta nueva/clase_practica/Domino/DominoLib/obj/Debug/net6.0/DominoLib.GeneratedMSBuildEditorConfig.editorconfig
+/home/nadie/datos/Carpeta nueva/clase_practica/Domino/DominoLib/obj/Debug/net6.0/DominoLib.AssemblyInfoInputs.cache
+/home/nadie/datos/Carpeta nueva/clase_practica/Domino/DominoLib/obj/Debug/net6.0/DominoLib.AssemblyInfo.cs
+/home/nadie/datos/Carpeta nueva/clase_practica/Domino/DominoLib/obj/Debug/net6.0/DominoLib.csproj.CoreCompileInputs.cache
+/home/nadie/datos/Carpeta nueva/clase_practica/Domino/DominoLib/obj/Debug/net6.0/DominoLib.dll
+/home/nadie/datos/Carpeta nueva/clase_practica/Domino/DominoLib/obj/Debug/net6.0/refint/DominoLib.dll
+/home/nadie/datos/Carpeta nueva/clase_practica/Domino/DominoLib/obj/Debug/net6.0/DominoLib.pdb
+/home/nadie/datos/Carpeta nueva/clase_practica/Domino/DominoLib/obj/Debug/net6.0/ref/DominoLib.dll

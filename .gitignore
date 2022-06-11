@@ -1,3 +1,5 @@
 /.vscode
-/obj
-/bin
+/.ConsoleApp/bin
+/.ConsoleApp/obj
+/DominoLib/bin
+/DominoLib/obj
