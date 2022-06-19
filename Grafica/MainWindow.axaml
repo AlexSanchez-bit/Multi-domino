@@ -10,7 +10,7 @@
          <!-- <ImageBrush Source=""/>-->
         </Window.Background>
         <StackPanel>      
-          <TextBox> Multi Domino</TextBox>
+          <TextBlock> Multi Domino</TextBlock>
          <Button Click="GameConfiguration"> Partida Personalizada </Button>
          <Button Click="CustomGames"> Partida Normal</Button>
             <Button Click="Exit"> Salir</Button>

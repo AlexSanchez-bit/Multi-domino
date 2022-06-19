@@ -10,6 +10,10 @@ class NormalTable : ITable
     IFace left;
 
     LinkedList<IObserver<KeyPlayedEvent>> observers;
+
+    string IRule.Description { get => "mesa normal de dos salidas";}
+    string IRule.Name { get => "normalTable";}
+
     public NormalTable()
     {
         board = new LinkedList<IKey>();
@@ -105,7 +109,7 @@ class NormalTable : ITable
     public void dettach(ITableObserver obsetver)
     {
          observers.Remove(obsetver);
-    }
+    }   
 }
 
 

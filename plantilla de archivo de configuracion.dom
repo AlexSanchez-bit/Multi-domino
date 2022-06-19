@@ -1,0 +1,14 @@
+
+    Name:nombre,    
+
+    KeySet:Keys,
+
+    Board:tablero,
+
+    WinCondition:condicionParada,
+
+    PlayerSelector:orden del partido,   
+
+    KeyDispenser:"",
+
+    GraphicController:"",

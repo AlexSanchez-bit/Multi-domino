@@ -1,5 +1,5 @@
 
-public interface ITable:ITableEventManager
+public interface ITable:ITableEventManager,IRule
 {
     bool ValidPlay(IKey key);
     IEnumerable<IFace> CurrentFaces();

@@ -8,6 +8,28 @@
         >         
           <StackPanel>
           <Button Click="GoBack"> Volver </Button>
-                <CheckBox IsChecked="False"></CheckBox>
+           <TextBlock> Fichas</TextBlock>
+               <ComboBox Name="Keyset">
+                   <ComboBoxItem> Fichas Numericas </ComboBoxItem>
+               </ComboBox>
+                <TextBlock> Tablero </TextBlock>
+               <ComboBox Name="Board">
+                   <ComboBoxItem> Tablero de dos salidas </ComboBoxItem>
+               </ComboBox>
+
+                <TextBlock> Condicion de Ganar </TextBlock>
+               <ComboBox Name="WinCondition">
+                         <ComboBoxItem> quien se quede sin fichas </ComboBoxItem>
+               </ComboBox>
+
+                <TextBlock> Seleccion de jugadores </TextBlock>
+               <ComboBox Name="PlayerSelector">
+                  <ComboBoxItem> orden secuencial </ComboBoxItem>
+               </ComboBox>
+
+                <TextBlock> Reparticion de fichas </TextBlock>
+               <ComboBox Name="KeySelector">
+                  <ComboBoxItem> aleatorio </ComboBoxItem>
+               </ComboBox>
           </StackPanel>           
 </Window>

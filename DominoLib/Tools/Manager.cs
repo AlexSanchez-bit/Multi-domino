@@ -6,13 +6,13 @@
      IPlayerSelector next_player;
      IList<IPlayer> player_list;
 
-     public Manager(ITable board,IEnumerable<IPlayer> players,IWinCondition winCondition, IPlayerSelector playerSelector,Func<IEnumerable<IKey>> generator)
+     public Manager(ITable board,IEnumerable<IPlayer> players,IWinCondition winCondition, IPlayerSelector playerSelector,IKeyGenerator generator)
      {
          this.board=board;        
          this.win_condition=winCondition;
          this.next_player = playerSelector;
          keyset=new List<IKey>();
-        foreach(var a in generator())
+        foreach(var a in generator.GenerateKeyset())
         {
             keyset.Add(a);
         }

@@ -6,6 +6,9 @@ public class GeneralWinCondition : IWinCondition
     List<IWinnerObserver> observers;
     int higherScore=int.MinValue;
 
+    string IRule.Description { get => "gana el primero en quedarse sin fichas o el q menos puntos tenga"; }
+    string IRule.Name { get => "normalWinCondition"; }
+
     public GeneralWinCondition()
     {
         observers= new List<IWinnerObserver>();
@@ -80,4 +83,6 @@ private int PlayerHandValue(IPlayer player)
            a.Update(eventdata);
        }
     }
+
+    
 }

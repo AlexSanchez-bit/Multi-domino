@@ -1,7 +1,7 @@
 
 
 
-class NormalPlayerSelector : IPlayerSelector ,IPlayerChanged
+class NormalPlayerSelector : IPlayerSelector
 {
 
     List<IPlayer> jugadores;
@@ -13,6 +13,10 @@ class NormalPlayerSelector : IPlayerSelector ,IPlayerChanged
         jugadores=new List<IPlayer>();
         observers = new LinkedList<IPlayerChangedObserver>();
     }
+
+    public string Description => "acceso a los jugadores de forma normal";
+
+    public string Name => "normalSelector";
 
     public void attach(IPlayerChangedObserver observer)
     {
@@ -52,6 +56,5 @@ class NormalPlayerSelector : IPlayerSelector ,IPlayerChanged
            jugadores.Add(a);
        }
     }
-
-  
+   
 }
