@@ -4,13 +4,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Grafica.CustomizationWindow"
-        Title="Customization"     
+        Title="Customization"   
+        DataContext="{ Binding Window}"  
         >         
-          <StackPanel>
-          <Button Click="GoBack"> Volver </Button>
+          <StackPanel DataContext="{ Binding Content }">
+            <Button Click="GoBack"> Volver </Button>
+
+          <TextBlock>Nombre de la partida:</TextBlock>
+          <TextBox Name="GameName" Text="{ Binding GameName }"></TextBox>
+        
            <TextBlock> Fichas</TextBlock>
                <ComboBox Name="Keyset">
-                   <ComboBoxItem> Fichas Numericas </ComboBoxItem>
+                   <ComboBoxItem> Doble Nueve Numerico </ComboBoxItem>
+                     <ComboBoxItem> Doble Seis Numerico </ComboBoxItem>                       
                </ComboBox>
                 <TextBlock> Tablero </TextBlock>
                <ComboBox Name="Board">
@@ -31,5 +37,8 @@
                <ComboBox Name="KeySelector">
                   <ComboBoxItem> aleatorio </ComboBoxItem>
                </ComboBox>
+
+               <Button Name="InitializeGameButton" Click="Initialize"> Comenzar Partida </Button>
+               <Button Name="SaveGame"> GuardarConfiguracion </Button>
           </StackPanel>           
 </Window>
