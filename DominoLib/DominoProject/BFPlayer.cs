@@ -1,17 +1,16 @@
 
-public class BFPlayer<T> : IPlayer
+public class BFPlayer : IPlayer
 {
     public  List<IKey> Keyset;
     string name;
     IComparer<IKey> comparer;    
     List<IKey> ValidKeys;
     
-    public BFPlayer(string name,IComparer<IKey> comparer)
+    public BFPlayer(string name)
     {
       
         this.name = name;
-        Keyset = new List<IKey>();
-        this.comparer =  comparer;
+        Keyset = new List<IKey>();      
     }
     public void Play(ITable board)
     {
@@ -32,7 +31,7 @@ public class BFPlayer<T> : IPlayer
             }
             else
             {
-                if(comparer.Compare(bestKey,item) > 0)
+                if(bestKey.GetValue()<item.GetValue())
                 {
                     bestKey = item;
                 }

@@ -4,15 +4,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Grafica.MainWindow"
-        Title="Grafica"
-        Background="#fa0b01">   
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="5"/>
-              <RowDefinition Height="Auto"/>            
-        </Grid.RowDefinitions>
-        <Button>algo ahi</Button>
-    </Grid>
-
-
+        Title="Grafica"     
+        > 
+        <Window.Background>
+         <!-- <ImageBrush Source=""/>-->
+        </Window.Background>
+        <StackPanel>      
+          <TextBox> Multi Domino</TextBox>
+         <Button Click="GameConfiguration"> Partida Personalizada </Button>
+         <Button Click="CustomGames"> Partida Normal</Button>
+            <Button Click="Exit"> Salir</Button>
+        </StackPanel>    
 </Window>

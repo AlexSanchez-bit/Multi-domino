@@ -10,14 +10,26 @@ namespace Grafica
         {
             InitializeComponent();           
         }
-
-        public void button_Click(object obj,RoutedEventArgs args)
+       
+        public void GameConfiguration(object obj,RoutedEventArgs args)
         {
-            var button =(Button)obj;            
-            Rectangle rect = this.FindControl<Rectangle>("rectangle");
-            rect.Width=112;
-            rect.Height=112;           
-            button.Content="Hello Avalonia";
+            var button =(Button)obj;                               
+            button.Content="iniciando";
+            var window = new CustomizationWindow();
+                window.GoToNextWindow(this);
+        }
+
+         public void CustomGames(object obj,RoutedEventArgs args)
+        {
+            var button =(Button)obj;   
+            var window = new PrefabsWindow();
+            window.GoToNextWindow(this);          
+        }
+
+         public void Exit(object obj,RoutedEventArgs args)
+        {
+            var button =(Button)obj;                               
+           this.Close();
         }
     }
     

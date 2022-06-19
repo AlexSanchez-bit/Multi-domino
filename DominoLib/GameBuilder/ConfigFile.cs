@@ -8,7 +8,7 @@ public class ConfigFile
     public ConfigFile(string[] data)
     {
         GameTable = new NormalTable();
-        Players = new NormalPlayer[]{new NormalPlayer("arturo"),new NormalPlayer("maria"),new NormalPlayer("jose"),new NormalPlayer("bernard")};
+        Players = new IPlayer[]{new NormalPlayer("arturo"),new NormalPlayer("maria"),new NormalPlayer("jose"),new BFPlayer("bernard")};
         GraphicPrinter= new ScreenPrinter();
         WinCondition= new GeneralWinCondition();
         PlayerSelector=new NormalPlayerSelector();
