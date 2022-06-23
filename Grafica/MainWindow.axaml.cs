@@ -20,9 +20,9 @@ namespace Grafica
         }
 
          public void CustomGames(object obj,RoutedEventArgs args)
-        {
+        {            
             var button =(Button)obj;   
-            var window = new PrefabsWindow();
+            var window = new  NormalGameWindow();//new PrefabsWindow();
             window.GoToNextWindow(this);          
         }
 
