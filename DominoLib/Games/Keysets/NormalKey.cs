@@ -31,4 +31,19 @@ public class NormalKey : IKey
     {
        return faces[0].GetValue()+faces[1].GetValue();
     }
+
+    public bool FitWith(IKey other)
+    {
+        foreach(var a in faces)
+        {
+            foreach(var b in other.GetAllFaces())
+            {
+                if(a.Equals(b))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }

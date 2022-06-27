@@ -5,9 +5,7 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Grafica.NormalGameWindow"
         Title="Game Table"    
-        >         
-             <Canvas Name="tablero" Width="120" Height="120">
-                <Rectangle Fill="Red" Height="44" Width="44"/>
-                 <Rectangle Fill="Blue" Height="44" Width="44" Canvas.Top="44"/>        
+        >                   
+<Canvas Name="tablero" Width="120" Height="120">        
              </Canvas>
 </Window>
