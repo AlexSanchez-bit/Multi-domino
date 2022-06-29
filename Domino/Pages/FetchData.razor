@@ -1,6 +1,5 @@
 ﻿@page "/fetchdata"
 @inject IJSRuntime JS
-
 <PageTitle> Domino Game</PageTitle>
 <style>
 
@@ -33,10 +32,14 @@ transform: translate(-50%,-50%);
 </div>
 
 <!-- mostrar los turnos-->
-<h5 id="player_name" > Turno de:</h5>
+<h5 id="player_name" >Turno de:</h5>
 <!-- mostrar los turnos -->
 
-<!-- mostrar fichas -->
+<!--Mostrar fichas del jugador -->
+<div id="player_keys">
+</div>
+
+<!-- mostrar fichas de la mesa-->
 <div class="container ">
 <div class="card" style="width:400px">
   <img class="card-img-left" src="Assets/Fondo.png" alt="Card image">
@@ -75,8 +78,7 @@ transform: translate(-50%,-50%);
             
         public void NotifyWinner(string message)
         {
-          var b = JS.InvokeVoidAsync("activateToogle",message);
-          Console.WriteLine(message);
+        JS.InvokeVoidAsync("activateToogle",message);
         }
         public void PlayKey(IKey key,int position)
         {
@@ -84,12 +86,14 @@ transform: translate(-50%,-50%);
         }
         public void Removeplayerkeys()
         {
-          
+        JS.InvokeVoidAsync("remove_playerKeys");
         }
         
         public void Change()
         {
+          
         }
+
         public void ChangeName(string a)
         {        
           Playername=a;
@@ -98,7 +102,16 @@ transform: translate(-50%,-50%);
 
         public void PutPlayerKeys(IEnumerable<IKey> keys)
         {
-
+          foreach(IKey a in keys)
+          {
+          
+          var info = new List<string>();
+          foreach(var face in a.GetAllFaces())
+          {
+            info.Add(face.GetRepresentation());
+          }
+            JS.InvokeVoidAsync("Add_playerKeys",info);
+          }
         }
        private string Playername="12";
        }

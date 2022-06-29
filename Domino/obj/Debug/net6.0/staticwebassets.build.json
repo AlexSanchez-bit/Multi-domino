@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "yXM7OF4j4d84Xfd3JIJhM5aIXJZ6jF6jvz3QjYh3SEU=",
+  "Hash": "8td7PAvtea6/Re9S2+Nq4HNHQc4ktxtcsEIaXsuLiMc=",
   "Source": "Domino",
   "BasePath": "_content/Domino",
   "Mode": "Default",
@@ -304,6 +304,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/favicon.ico"
+    },
+    {
+      "Identity": "/home/nadie/datos/Carpeta nueva/clase_practica/Domino/Domino/wwwroot/jaja.js",
+      "SourceId": "Domino",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/nadie/datos/Carpeta nueva/clase_practica/Domino/Domino/wwwroot/",
+      "BasePath": "_content/Domino",
+      "RelativePath": "jaja.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/jaja.js"
     }
   ]
 }

@@ -30,24 +30,47 @@
     <script>
         function change_name(a)
         {
-            var b = document.getElementById("player_name");
-            b.innerText=`Turno de: ${a}`
+            var text = document.getElementById("player_name");                       
+            text.innerText=`Turno de : ${a}`;
+        }
+
+        function activateToogle(message)
+        {
+            var not = document.getElementById("toast");
+            document.getElementById("toast_text").innerText=message;
+            not.style.display="block";
         }
 
         function ToogleToast()
         {
-
-            var b = document.getElementById("toast");
-            b.style.display="none";
+            document.getElementById("toast").style.display="none";
         }
 
-        function activateToogle(a)
+        function remove_playerKeys()
         {
-            var b = document.getElementById("toast");        
-            var c = document.getElementById("toast_text");        
-            c.innerText=a;
-            b.style.display="block";
+            var container = document.getElementById("player_keys");
+            var keys = document.getElementsByClassName("player_key");
+            for(var a of keys )
+            {
+               container.removeChild(a);
+            }
         }
+
+        function Add_playerKeys(faces)
+        {
+
+            var container = document.getElementById("player_keys");
+            var key = document.createElement("div");
+            key.classList.add("player_key");
+            var content = document.createElement("h6");
+            for(var a of faces)
+            {
+                content.innerText+=a;
+            }
+            key.appendChild(content);
+            container.appendChild(key);            
+        }
+
     </script>
 </body>
 </html>
