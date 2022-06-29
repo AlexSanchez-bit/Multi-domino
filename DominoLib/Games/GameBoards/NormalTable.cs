@@ -2,7 +2,7 @@
 
 
 
-class NormalTable : ITable
+public class NormalTable : ITable
 {
 
     LinkedList<IKey> board;

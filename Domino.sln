@@ -5,6 +5,12 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grafica", "Grafica\Grafica.csproj", "{1C475454-870F-499B-A6D0-89B56B793359}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blazor", "Blazor", "{E93C0CCD-96E6-4B00-8BC9-766E302BCD59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domino", "Blazor\Domino\Domino.csproj", "{636E6FD0-6D28-485F-BE22-B78AE04BA0D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domino", "Domino\Domino.csproj", "{35988CB8-7B9E-484C-A3A7-7AB07A67DFE3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +24,16 @@ Global
 		{1C475454-870F-499B-A6D0-89B56B793359}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C475454-870F-499B-A6D0-89B56B793359}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C475454-870F-499B-A6D0-89B56B793359}.Release|Any CPU.Build.0 = Release|Any CPU
+		{636E6FD0-6D28-485F-BE22-B78AE04BA0D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{636E6FD0-6D28-485F-BE22-B78AE04BA0D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{636E6FD0-6D28-485F-BE22-B78AE04BA0D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{636E6FD0-6D28-485F-BE22-B78AE04BA0D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35988CB8-7B9E-484C-A3A7-7AB07A67DFE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35988CB8-7B9E-484C-A3A7-7AB07A67DFE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35988CB8-7B9E-484C-A3A7-7AB07A67DFE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35988CB8-7B9E-484C-A3A7-7AB07A67DFE3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{636E6FD0-6D28-485F-BE22-B78AE04BA0D9} = {E93C0CCD-96E6-4B00-8BC9-766E302BCD59}
 	EndGlobalSection
 EndGlobal

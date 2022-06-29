@@ -1,7 +1,7 @@
 
 
 
-class NormalPlayerSelector : IPlayerSelector
+public class NormalPlayerSelector : IPlayerSelector
 {
 
     List<IPlayer> jugadores;

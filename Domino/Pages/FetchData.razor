@@ -1,0 +1,104 @@
+﻿@page "/fetchdata"
+@inject IJSRuntime JS
+
+<PageTitle> Domino Game</PageTitle>
+<style>
+
+.toast{
+  position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%);
+  z-index:100;
+}
+
+
+</style>
+
+<h1>Domino</h1>
+
+<!-- Toast de Notificacion -->
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="toast">
+  <div class="toast-header">
+    <img src="..." class="rounded mr-2" alt="...">
+    <strong class="mr-auto">Domino Alert</strong>
+    <small>11 mins ago</small>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close" onclick="ToogleToast()">      
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="toast-body" id="toast_text">
+    Hello, world! This is a toast message.
+  </div>
+</div>
+
+<!-- mostrar los turnos-->
+<h5 id="player_name" > Turno de:</h5>
+<!-- mostrar los turnos -->
+
+<!-- mostrar fichas -->
+<div class="container ">
+<div class="card" style="width:400px">
+  <img class="card-img-left" src="Assets/Fondo.png" alt="Card image">
+  <img class="card-img-left" src="Assets/Fondo.png" alt="Card image">
+  <div class="card-body">
+  </div>
+</div>
+</div>
+@code {
+       public BlazorPrinter printer = new BlazorPrinter();
+       public ITable GameTable = new NormalTable();
+        public IPlayer[] Players = new IPlayer[]{new NormalPlayer("arturo"),new NormalPlayer("maria"),new NormalPlayer("jose"),new BFPlayer("bernard")};
+        public IWinCondition WinCondition= new GeneralWinCondition();
+       public IPlayerSelector PlayerSelector=new NormalPlayerSelector();
+        public IKeyGenerator KeyGenerator=new NormalGenerator();         
+        public Action<IPlayer,IEnumerable<IKey>> KeyDispenser=Dispensers.NormalDispenser;                 
+        public Manager manager;
+        public Thread hilo_juego;
+
+
+        protected override void OnInitialized()
+        {
+        printer.PrintPlayerName=ChangeName;
+        printer.PrintPlayerKeys=PutPlayerKeys;
+        printer.RemovePlayerKeys=Removeplayerkeys;
+        printer.PlayKey=this.PlayKey;
+        printer.NotifyWinner=this.NotifyWinner;
+        GameTable.attach(printer);
+        WinCondition.attach(printer);
+        PlayerSelector.attach(printer);
+         manager = new Manager(GameTable,Players,WinCondition,PlayerSelector,KeyGenerator);        
+         manager.InitializeGame(KeyDispenser);
+         hilo_juego=new Thread(()=>{manager.SimulateGame();});
+         hilo_juego.Start();
+        }
+            
+        public void NotifyWinner(string message)
+        {
+          var b = JS.InvokeVoidAsync("activateToogle",message);
+          Console.WriteLine(message);
+        }
+        public void PlayKey(IKey key,int position)
+        {
+
+        }
+        public void Removeplayerkeys()
+        {
+          
+        }
+        
+        public void Change()
+        {
+        }
+        public void ChangeName(string a)
+        {        
+          Playername=a;
+          var b = JS.InvokeVoidAsync("change_name",a);
+        }
+
+        public void PutPlayerKeys(IEnumerable<IKey> keys)
+        {
+
+        }
+       private string Playername="12";
+       }

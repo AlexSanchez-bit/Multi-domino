@@ -1,0 +1,53 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+@namespace Domino.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="~/" />
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link href="css/site.css" rel="stylesheet" />
+    <link href="Domino.styles.css" rel="stylesheet" />
+    <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
+</head>
+<body>
+    @RenderBody()
+    <div id="blazor-error-ui">
+        <environment include="Staging,Production">
+            An error has occurred. This application may no longer respond until reloaded.
+        </environment>
+        <environment include="Development">
+            An unhandled exception has occurred. See browser dev tools for details.
+        </environment>
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+
+    <script src="_framework/blazor.server.js"></script>
+    <script>
+        function change_name(a)
+        {
+            var b = document.getElementById("player_name");
+            b.innerText=`Turno de: ${a}`
+        }
+
+        function ToogleToast()
+        {
+
+            var b = document.getElementById("toast");
+            b.style.display="none";
+        }
+
+        function activateToogle(a)
+        {
+            var b = document.getElementById("toast");        
+            var c = document.getElementById("toast_text");        
+            c.innerText=a;
+            b.style.display="block";
+        }
+    </script>
+</body>
+</html>

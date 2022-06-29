@@ -6,6 +6,14 @@
         x:Class="Grafica.NormalGameWindow"
         Title="Game Table"    
         >                   
-<Canvas Name="tablero" Width="120" Height="120">        
-             </Canvas>
+        <StackPanel>
+        <TextBlock Name="player_name">Turno de : fulano</TextBlock>
+        <Panel Name="mesa">
+                 <TextBlock>[2]</TextBlock>         
+                 <TextBlock>[2]</TextBlock>    
+        </Panel>
+        <Panel Name="player_keys">
+        </Panel>
+        </StackPanel>
+        
 </Window>

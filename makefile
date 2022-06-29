@@ -5,3 +5,6 @@ console:
 .PHONY: graphic
 graphic:
 	dotnet run --project Grafica
+.PHONY: blazor
+blazor:
+	dotnet watch run --project Domino
