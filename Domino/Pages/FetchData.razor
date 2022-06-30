@@ -124,18 +124,59 @@ transform: translate(-50%,-50%);
 
         public void PlayKey(IKey key,int position)
         {
-        /*
-        var info = new LinkedList<string>(); 
+        
+        var front = position==1;
 
-          foreach(var a in key.GetAllFaces())
-          {
-            info.AddLast(a.GetRepresentation());
-          }          
-          JS.InvokeVoidAsync("add_to_board",info,false);
-*/
-//        Console.WriteLine(right.GetRepresentation()+" --- "+left.GetRepresentation() );
+        if(right==null )
+        {
+          left=key.GetFace(0);
+          right=key.GetFace(key.GetAllFaces().Count()-1);
+          JS.InvokeVoidAsync("add_to_board",Create_Key(key,false),false);
+          return;
         }
 
+          if(front)
+          {
+            if(key.GetFace(key.GetAllFaces().Count()-1).Equasl(left))
+            {
+              left=key.GetFace(0);
+              JS.InvokeVoidAsync("add_to_board",Create_Key(key,false),true);
+              return;
+              }else
+              {
+              left=key.GetFace(key.GetAllFaces().Count()-1);
+              JS.InvokeVoidAsync("add_to_board",Create_Key(key,true),true);
+              return;
+              }
+          }
+          else{
+
+            if(key.GetFace(0).Equasl(right))
+            {
+              left=key.GetFace(key.GetAllFaces().Count()-1);
+              JS.InvokeVoidAsync("add_to_board",Create_Key(key,false),false);
+              return;
+              }else
+              {
+              left=key.GetFace(0);
+              JS.InvokeVoidAsync("add_to_board",Create_Key(key,true),false);
+              return;
+              }
+
+          }
+        }
+
+        private LinkedList<string> Create_Key(IKey key,bool reverso)
+        {
+        var info = new LinkedList<string>();
+          foreach(var a in key.GetAllFaces())
+          {
+          if(reverso)info.AddFirst(a.GetRepresentation());
+            else
+            info.AddLast(a.GetRepresentation());
+          }          
+          return info;
+        }
 
         public void Removeplayerkeys()
         {
