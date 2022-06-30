@@ -54,21 +54,55 @@
             {
                container.removeChild(a);
             }
+
+        }
+        
+        function add_to_board(faces,front)
+        {
+            var board = document.getElementById("board");
+            var key=create_board_key(faces);
+            console.log(key);
+            if(front)
+            {
+                if(board.firstChild!=null){
+                board.insertBefore(key,board.firstChild);
+                    return;
+                }
+            }
+                board.appendChild(key);
         }
 
+        function create_board_key(faces)        
+        {
+            var key = document.createElement("div");
+            key.classList.add("onboardKey");
+            for(var a of faces)
+            {
+                var image = document.createElement("img");
+                image.classList.add("card-img");
+                image.src=`Assets/${a}.png`;
+                key.appendChild(image);
+            }
+            return key;
+        }
+
+        function create_decoration_key(faces)        
+        {
+            var key = document.createElement("div");
+            key.classList.add("player_key");
+            for(var a of faces)
+            {
+                var image = document.createElement("img");
+                image.classList.add("key_img");
+                image.src=`Assets/${a}.png`;
+                key.appendChild(image);
+            }
+            return key;
+        }
         function Add_playerKeys(faces)
         {
 
-            var container = document.getElementById("player_keys");
-            var key = document.createElement("div");
-            key.classList.add("player_key");
-            var content = document.createElement("h6");
-            for(var a of faces)
-            {
-                content.innerText+=a;
-            }
-            key.appendChild(content);
-            container.appendChild(key);            
+            var container = document.getElementById("player_keys").appendChild(create_decoration_key(faces));
         }
 
     </script>

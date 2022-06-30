@@ -2,7 +2,9 @@
 @inject IJSRuntime JS
 <PageTitle> Domino Game</PageTitle>
 <style>
-
+body
+{
+}
 .toast{
   position: fixed;
 top: 50%;
@@ -10,6 +12,45 @@ left: 50%;
 transform: translate(-50%,-50%);
   z-index:100;
 }
+
+.sidebar
+{
+  display:none;
+}
+
+#board
+{
+  height:99px;
+    width:1000vw;
+}
+
+.onboardKey{
+    width:100px;
+      height:50px;
+  display:inline-flex;
+    margin-right:3px;
+        }
+.card-img{
+    object-fit:cover;
+      width:50px;
+      height:50px;
+}
+
+
+  .player_key
+  {
+    width:30px;
+      height:60px;
+        display:inline-flex;
+          margin:19px;
+  }
+
+  .player_key img
+  {
+    width:30px;
+      height:30px;
+
+  }
 
 
 </style>
@@ -40,13 +81,7 @@ transform: translate(-50%,-50%);
 </div>
 
 <!-- mostrar fichas de la mesa-->
-<div class="container ">
-<div class="card" style="width:400px">
-  <img class="card-img-left" src="Assets/Fondo.png" alt="Card image">
-  <img class="card-img-left" src="Assets/Fondo.png" alt="Card image">
-  <div class="card-body">
-  </div>
-</div>
+<div id="board">  
 </div>
 @code {
        public BlazorPrinter printer = new BlazorPrinter();
@@ -58,7 +93,7 @@ transform: translate(-50%,-50%);
         public Action<IPlayer,IEnumerable<IKey>> KeyDispenser=Dispensers.NormalDispenser;                 
         public Manager manager;
         public Thread hilo_juego;
-
+        private IFace right,left;
 
         protected override void OnInitialized()
         {
@@ -82,16 +117,53 @@ transform: translate(-50%,-50%);
         }
         public void PlayKey(IKey key,int position)
         {
+        var info = new LinkedList<string>(); 
+        bool front = position==1;
+         var _toCompareFace = front?left:right;
+            
+         if(left==null)
+         {
 
+         left=key.GetFace(0);
+         right=key.GetFace(key.GetAllFaces().Count()-1);
+
+          foreach(var a in key.GetAllFaces())
+          {
+            info.AddLast(a.GetRepresentation());
+          }          
+
+        JS.InvokeVoidAsync("add_to_board",info,front);
+        return;
+         }
+        
+         bool first =key.GetFace(0).Equals(_toCompareFace);
+          foreach(var a in key.GetAllFaces())
+          {
+         if(first)
+         {
+            info.AddFirst(a.GetRepresentation());
+         }else
+         {
+            info.AddLast(a.GetRepresentation()); 
+         }
+         }
+          update_face(position,first?key.GetFace(0):key.GetFace(key.GetAllFaces().Count()-1));          
+        JS.InvokeVoidAsync("add_to_board",info,front);
+        Console.WriteLine(right.GetRepresentation()+" --- "+left.GetRepresentation() );
         }
         public void Removeplayerkeys()
         {
         JS.InvokeVoidAsync("remove_playerKeys");
         }
         
-        public void Change()
+        private void update_face(int dir,IFace face)
         {
-          
+          if(dir==1)
+          {
+          left=face;
+          }else{
+          right=face;
+          }
         }
 
         public void ChangeName(string a)
