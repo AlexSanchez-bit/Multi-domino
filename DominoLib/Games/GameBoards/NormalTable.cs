@@ -54,7 +54,6 @@ public class NormalTable : ITable
                  }
             }    
            notify(key,1); 
-           Console.WriteLine("r{0}----l{1}",right.GetRepresentation(),left.GetRepresentation()); 
               return;   
        }    
         foreach(var a in faces)

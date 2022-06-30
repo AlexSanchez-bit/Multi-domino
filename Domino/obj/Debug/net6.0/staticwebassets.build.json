@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "BA3xeFB8fUXpLQLiAiOdwowTPHRjlnWxStdPvHY0i5s=",
+  "Hash": "uOeNIsmtTW/Pn7FRsnX1BCmJH1aLMfcJPcW6QvRjWxw=",
   "Source": "Domino",
   "BasePath": "_content/Domino",
   "Mode": "Default",
@@ -493,12 +493,12 @@
       "OriginalItemSpec": "wwwroot/favicon.ico"
     },
     {
-      "Identity": "/home/nadie/datos/Carpeta nueva/clase_practica/Domino/Domino/wwwroot/jaja.js",
+      "Identity": "/home/nadie/datos/Carpeta nueva/clase_practica/Domino/Domino/wwwroot/javascript/screen_manager.js",
       "SourceId": "Domino",
       "SourceType": "Discovered",
       "ContentRoot": "/home/nadie/datos/Carpeta nueva/clase_practica/Domino/Domino/wwwroot/",
       "BasePath": "_content/Domino",
-      "RelativePath": "jaja.js",
+      "RelativePath": "javascript/screen_manager.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -507,7 +507,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/jaja.js"
+      "OriginalItemSpec": "wwwroot/javascript/screen_manager.js"
     }
   ]
 }

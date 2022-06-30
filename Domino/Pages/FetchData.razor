@@ -5,57 +5,6 @@
 body
 {
 }
-.toast{
-  position: fixed;
-top: 50%;
-left: 50%;
-transform: translate(-50%,-50%);
-  z-index:100;
-}
-
-.sidebar
-{
-  display:none;
-}
-
-#board
-{
-  height:99px;
-    width:1000vw;
-}
-
-.onboardKey{
-    width:100px;
-      height:50px;
-  display:inline-flex;
-    margin-right:3px;
-      box-shadow:10px 10px 10px BLACK;
-        }
-.card-img{
-    object-fit:cover;
-      width:50px;
-      height:50px;
-}
-
-
-  .player_key
-  {
-    width:30px;
-      height:60px;
-        display:inline-flex;
-          margin:19px;
-            animation-duration:1s;
-              animation-name:glowup;
-  }
-
-  .player_key img
-  {
-    width:30px;
-      height:30px;
-
-  }
-
-
 </style>
 
 <h1>Domino</h1>
@@ -82,10 +31,26 @@ transform: translate(-50%,-50%);
 <!--Mostrar fichas del jugador -->
 <div id="player_keys">
 </div>
-
 <!-- mostrar fichas de la mesa-->
 <div id="board">  
 </div>
+<!-- mostrar fichas de la mesa-->
+<!--Mostrar fichas del resto de jugadores -->
+<div id="players_section">
+  @foreach(var a in Players){
+  <div id=@a.GetIdentifier() class="backgorund_player">
+    <h5 class="bg_player_name">@a.GetIdentifier()</h5>
+   @foreach(var b in a.GetKeys()){
+    <div class="bg_player_key" id=@b.GetHashCode()>
+      @foreach(var c in b.GetAllFaces()){
+      <img class="key_img" src="Assets/@c.GetRepresentation().png">
+      }
+    </div>    
+    }
+    }
+    </div>
+
+
 @code {
        public BlazorPrinter printer = new BlazorPrinter();
        public ITable GameTable = new NormalTable();
@@ -214,4 +179,5 @@ transform: translate(-50%,-50%);
           }
         }
        private string Playername="12";
+       }
        }

@@ -1,0 +1,83 @@
+
+.toast{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index:100;
+}
+
+.sidebar
+{
+  display:none;
+}
+
+#board
+{
+  height:100px;
+    width:90vw;
+  overflow:scroll;
+  display:flex;
+  flex-direction:row;    
+}
+
+.onboardKey{
+    width:100px;
+  display:flex;
+  flex-direction:row;    
+    height:50px;
+    margin-right:5px;
+    box-shadow:10px 7px 10px BLACK;
+        }
+
+.card-img{
+    object-fit:cover;
+      width:50px;
+      height:50px;
+      }
+
+
+#player_keys
+{
+    display:flex;
+    flex-direction:row;
+}
+  .player_key
+  {
+    width:30px;
+    height:60px;
+    margin-left:5px;
+      margin-bottom:59px;
+  }
+
+  .player_key img
+  {
+    width:30px;
+    height:30px;
+  }
+
+  .backgorund_player
+  {
+    margin:20px;
+    display:flex;
+      flex-direction:row;
+  }
+
+  .bg_player_name
+  {
+    margin:10px;
+  }
+
+  .bg_player_key{
+    width:30px;
+      height:15px;      
+  }
+
+  .bg_player_key img
+  {
+    width:15px;
+      height:15px;
+        display:flex;
+          direction:column;
+  }
+
