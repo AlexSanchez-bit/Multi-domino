@@ -43,6 +43,8 @@ transform: translate(-50%,-50%);
       height:60px;
         display:inline-flex;
           margin:19px;
+            animation-duration:1s;
+              animation-name:glowup;
   }
 
   .player_key img
@@ -105,52 +107,36 @@ transform: translate(-50%,-50%);
         GameTable.attach(printer);
         WinCondition.attach(printer);
         PlayerSelector.attach(printer);
-         manager = new Manager(GameTable,Players,WinCondition,PlayerSelector,KeyGenerator);        
-         manager.InitializeGame(KeyDispenser);
-         hilo_juego=new Thread(()=>{manager.SimulateGame();});
-         hilo_juego.Start();
+        manager = new Manager(GameTable,Players,WinCondition,PlayerSelector,KeyGenerator);        
+        manager.InitializeGame(KeyDispenser);
+        hilo_juego=new Thread(()=>{
+        manager.SimulateGame();
+        });
+        hilo_juego.Start();
         }
             
         public void NotifyWinner(string message)
         {
         JS.InvokeVoidAsync("activateToogle",message);
         }
+
+
+
         public void PlayKey(IKey key,int position)
         {
+        /*
         var info = new LinkedList<string>(); 
-        bool front = position==1;
-         var _toCompareFace = front?left:right;
-            
-         if(left==null)
-         {
-
-         left=key.GetFace(0);
-         right=key.GetFace(key.GetAllFaces().Count()-1);
 
           foreach(var a in key.GetAllFaces())
           {
             info.AddLast(a.GetRepresentation());
           }          
-
-        JS.InvokeVoidAsync("add_to_board",info,front);
-        return;
-         }
-        
-         bool first =key.GetFace(0).Equals(_toCompareFace);
-          foreach(var a in key.GetAllFaces())
-          {
-         if(first)
-         {
-            info.AddFirst(a.GetRepresentation());
-         }else
-         {
-            info.AddLast(a.GetRepresentation()); 
-         }
-         }
-          update_face(position,first?key.GetFace(0):key.GetFace(key.GetAllFaces().Count()-1));          
-        JS.InvokeVoidAsync("add_to_board",info,front);
-        Console.WriteLine(right.GetRepresentation()+" --- "+left.GetRepresentation() );
+          JS.InvokeVoidAsync("add_to_board",info,false);
+*/
+//        Console.WriteLine(right.GetRepresentation()+" --- "+left.GetRepresentation() );
         }
+
+
         public void Removeplayerkeys()
         {
         JS.InvokeVoidAsync("remove_playerKeys");
