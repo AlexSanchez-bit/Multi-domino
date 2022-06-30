@@ -48,15 +48,21 @@ public class NormalTable : ITable
            foreach(var a in faces)
             {
                 if(!a.Equals(right))
-                              right=a;                  
+                {
+                    right=a;                  
+                    break;
+                 }
             }    
            notify(key,1); 
-            
+           Console.WriteLine("r{0}----l{1}",right.GetRepresentation(),left.GetRepresentation()); 
               return;   
        }    
         foreach(var a in faces)
             {
-                if(!a.Equals(left))left=a;
+                if(!a.Equals(left)){
+                    left=a;
+                    break;
+                  }
             }
              notify(key,2); 
     }

@@ -29,6 +29,7 @@ transform: translate(-50%,-50%);
       height:50px;
   display:inline-flex;
     margin-right:3px;
+      box-shadow:10px 10px 10px BLACK;
         }
 .card-img{
     object-fit:cover;
@@ -137,7 +138,7 @@ transform: translate(-50%,-50%);
 
           if(front)
           {
-            if(key.GetFace(key.GetAllFaces().Count()-1).Equasl(left))
+            if(key.GetFace(key.GetAllFaces().Count()-1).Equals(left))
             {
               left=key.GetFace(0);
               JS.InvokeVoidAsync("add_to_board",Create_Key(key,false),true);
@@ -151,14 +152,14 @@ transform: translate(-50%,-50%);
           }
           else{
 
-            if(key.GetFace(0).Equasl(right))
+            if(key.GetFace(0).Equals(right))
             {
-              left=key.GetFace(key.GetAllFaces().Count()-1);
+              right=key.GetFace(key.GetAllFaces().Count()-1);
               JS.InvokeVoidAsync("add_to_board",Create_Key(key,false),false);
               return;
               }else
               {
-              left=key.GetFace(0);
+              right=key.GetFace(0);
               JS.InvokeVoidAsync("add_to_board",Create_Key(key,true),false);
               return;
               }
