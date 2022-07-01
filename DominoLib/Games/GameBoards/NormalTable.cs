@@ -12,7 +12,7 @@ public class NormalTable : ITable
     LinkedList<IObserver<KeyPlayedEvent>> observers;
 
     string IRule.Description { get => "mesa normal de dos salidas";}
-    string IRule.Name { get => "normalTable";}
+    string IRule.Name { get => "Normal";}
 
     public NormalTable()
     {

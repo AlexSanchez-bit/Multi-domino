@@ -11,7 +11,7 @@ string save_direction="~/datos/Carpeta nueva/datos/Carpeta nueva/clase_practica/
     {
         string data=string.Format("Name:{0}\n",this.GameName);
         data+=Parse();
-        StreamWriter sw = new StreamWriter(save_direction+"/"+this.game_name);
+        StreamWriter sw = new StreamWriter(save_direction+"/"+this.GameName);
         sw.Write(data);
         sw.Close();    
     }
@@ -58,8 +58,8 @@ string save_direction="~/datos/Carpeta nueva/datos/Carpeta nueva/clase_practica/
 
   private void init_Config_file(string[] configs)
   {
-      Keyset=configs[1];
       GameName=configs[0];
+      Keyset=configs[1];    
       GameTable=configs[2];
       WinCondition=configs[3];
       PlayerSelector=configs[4];

@@ -53,13 +53,9 @@ body
 
 
 @code {
-       public BlazorPrinter printer = new BlazorPrinter();
-       public ITable GameTable = new NormalTable();
-        public IPlayer[] Players = new IPlayer[]{new NormalPlayer("arturo"),new NormalPlayer("maria"),new NormalPlayer("jose"),new BFPlayer("bernard")};
-        public IWinCondition WinCondition= new GeneralWinCondition();
-       public IPlayerSelector PlayerSelector=new NormalPlayerSelector();
-        public IKeyGenerator KeyGenerator=new NormalGenerator();         
-        public Action<IPlayer,IEnumerable<IKey>> KeyDispenser=Dispensers.NormalDispenser;                 
+       public BlazorPrinter printer = new BlazorPrinter();              
+        public Action<IPlayer,IEnumerable<IKey>> KeyDispenser=Dispensers.NormalDispenser;   
+          public IEnumerable<IPlayer> Players;              
         public Manager manager;
         public Thread hilo_juego;
         private IFace right,left;
@@ -72,16 +68,19 @@ body
 
         protected override void OnInitialized()
         {
+
+          var players = new PlayerListBuilder(new (string,string)[]{("rodolfo","Random"),("maria","Botagorda"),("alfredo","Random"),("Manuel","Botagorda")});
+          Players=players.GetPlayers();
         printer.PrintPlayerName=ChangeName;
         printer.PrintPlayerKeys=PutPlayerKeys;
         printer.RemovePlayerKeys=Removeplayerkeys;
         printer.PlayKey=this.PlayKey;
-        printer.NotifyWinner=this.NotifyWinner;
-        GameTable.attach(printer);
-        WinCondition.attach(printer);
-        PlayerSelector.attach(printer);
-        manager = new Manager(GameTable,Players,WinCondition,PlayerSelector,KeyGenerator);        
-        manager.InitializeGame(KeyDispenser);
+        printer.NotifyWinner=this.NotifyWinner;        
+
+          var configs = new ConfigFile(new string[]{"prueba","Double9","Normal","Normal","Ordered","random"});
+          var game_builder = new GameBuilder(configs);
+          game_builder.ConnectGame (printer); 
+        manager = game_builder.BuildGame(players.GetPlayers(),KeyDispenser);                   
         hilo_juego=new Thread(()=>{
         manager.SimulateGame();
         });

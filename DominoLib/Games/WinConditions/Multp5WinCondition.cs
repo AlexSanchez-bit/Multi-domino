@@ -1,30 +1,38 @@
-
-
-
-public class GeneralWinCondition : IWinCondition
+public class Multp5WinCondition : IWinCondition,IPlayerChangedObserver
 {
     IPlayer winner;
     List<IWinnerObserver> observers;
     int higherScore=int.MinValue;
+    Dictionary<IPlayer,int> player_score;
+    IPlayer Last_in_play;
 
-    string IRule.Description { get => "gana el primero en quedarse sin fichas o el q menos puntos tenga"; }
-    string IRule.Name { get => "Normal"; }
+    public string Description => "condicion de parada de los multiplos de 5";
 
-    public GeneralWinCondition()
+    public string Name => "mult5";
+
+    public Multp5WinCondition()
     {
         observers= new List<IWinnerObserver>();
         winner = new NormalPlayer("error");
+        player_score =  new Dictionary<IPlayer, int>();
+        Last_in_play = new NormalPlayer("error");
     }
     public bool GameEnded(IEnumerable<IPlayer> players, ITable mesa)
     {
+        int score =0;
+        foreach(var b in mesa.CurrentFaces())
+        {
+          score += b.GetValue();
+        }
+        if(score%5==0)
+        {
+           player_score[Last_in_play] = score;
+        }
         foreach(var a in players)
         {
             if(a.GetKeys().Count()==0)
             {
-                winner=a;
-                Console.WriteLine("se quedo sin fichas");
-         notify(winner);
-                return true;
+                Winner(player_score);
             }
 
             if(HasLeftPlays(a,mesa))
@@ -32,19 +40,29 @@ public class GeneralWinCondition : IWinCondition
               Console.WriteLine("aun se puede jugar");
                 return false;
             }
+            
             Console.WriteLine("{0} no le quedan jugadas",a.GetIdentifier());
             var aux = PlayerHandValue(a);
-            if(aux>=higherScore)
-            {
-                higherScore=aux;
-                winner=a;
-            }
+           
 
         }
          notify(winner);
         return true;       
     }
-
+    
+ public void Winner(Dictionary<IPlayer,int> players)
+ {
+     int highvalue =0;
+     foreach (var item in players)
+     {
+         if(highvalue < item.Value)
+         {
+             highvalue = item.Value;
+             winner = item.Key;
+         }
+     }
+     
+ }
 private int PlayerHandValue(IPlayer player)
 {
     int val=0;
@@ -86,5 +104,8 @@ private int PlayerHandValue(IPlayer player)
        }
     }
 
-    
+    public void Update(IEvent<IPlayer> eventinfo)
+    {
+        Last_in_play = eventinfo.GetEventData();
+    }
 }

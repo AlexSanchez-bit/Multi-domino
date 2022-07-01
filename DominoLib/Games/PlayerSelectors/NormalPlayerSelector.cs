@@ -16,7 +16,7 @@ public class NormalPlayerSelector : IPlayerSelector
 
     public string Description => "acceso a los jugadores de forma normal";
 
-    public string Name => "normalSelector";
+    public string Name => "Ordered";
 
     public void attach(IPlayerChangedObserver observer)
     {

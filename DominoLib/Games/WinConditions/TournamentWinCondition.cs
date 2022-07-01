@@ -1,30 +1,52 @@
 
 
-
-public class GeneralWinCondition : IWinCondition
+public class TournamentWinCondition : IWinCondition
 {
     IPlayer winner;
     List<IWinnerObserver> observers;
     int higherScore=int.MinValue;
+    Dictionary<IPlayer,int> wins;
 
-    string IRule.Description { get => "gana el primero en quedarse sin fichas o el q menos puntos tenga"; }
-    string IRule.Name { get => "Normal"; }
+    public string Description =>"condicion de parada para torneos";
 
-    public GeneralWinCondition()
+    public string Name => "Tournament";
+
+    public TournamentWinCondition()
     {
         observers= new List<IWinnerObserver>();
-        winner = new NormalPlayer("error");
+        winner = new NormalPlayer("error");      
+    }
+
+    private void InitPlayers(IEnumerable<IPlayer> players)
+    {
+          wins = new Dictionary<IPlayer, int>();
+        foreach(var a in players)
+        {
+            wins.Add(a,0);
+        }
     }
     public bool GameEnded(IEnumerable<IPlayer> players, ITable mesa)
     {
+        if( wins==null || wins.Count()==0)
+        {
+            InitPlayers(players);
+        }
+        foreach(var a in players)
+        {
+            if(wins[a] == 2)
+            {
+                return true;
+            }
+        }   
         foreach(var a in players)
         {
             if(a.GetKeys().Count()==0)
             {
                 winner=a;
                 Console.WriteLine("se quedo sin fichas");
-         notify(winner);
-                return true;
+                wins[a]++;
+                mesa.Reset();
+                return false;
             }
 
             if(HasLeftPlays(a,mesa))
@@ -85,6 +107,4 @@ private int PlayerHandValue(IPlayer player)
            a.Update(eventdata);
        }
     }
-
-    
 }

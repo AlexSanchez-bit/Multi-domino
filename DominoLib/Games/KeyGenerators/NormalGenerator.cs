@@ -2,7 +2,7 @@ public class NormalGenerator:IKeyGenerator
 {
     public string Description => "fichas numericas doble nueve";
 
-    public string Name => "fichas doble nueve";
+    public string Name => "Double9";
 
     public IEnumerable<IKey> GenerateKeyset()
     {
