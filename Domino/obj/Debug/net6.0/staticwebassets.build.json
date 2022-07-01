@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "uOeNIsmtTW/Pn7FRsnX1BCmJH1aLMfcJPcW6QvRjWxw=",
+  "Hash": "trHjqjWlh71d4XaZYyxqL/XNL1EQP6Lm1UZUB9wnFW0=",
   "Source": "Domino",
   "BasePath": "_content/Domino",
   "Mode": "Default",
@@ -474,6 +474,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/site.css"
+    },
+    {
+      "Identity": "/home/nadie/datos/Carpeta nueva/clase_practica/Domino/Domino/wwwroot/css/two_ways_gamesstyles.css",
+      "SourceId": "Domino",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/nadie/datos/Carpeta nueva/clase_practica/Domino/Domino/wwwroot/",
+      "BasePath": "_content/Domino",
+      "RelativePath": "css/two_ways_gamesstyles.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/two_ways_gamesstyles.css"
     },
     {
       "Identity": "/home/nadie/datos/Carpeta nueva/clase_practica/Domino/Domino/wwwroot/favicon.ico",

@@ -1,5 +1,7 @@
 
 
+
+
       function add_background_player(playername)
       {
     var holder = document.createElement("div");
@@ -42,7 +44,7 @@
       function show_backround_player(player)
 {
 
-         document.getElementById(player).style.display="block";
+         document.getElementById(player).style.display="flex";
 }
 
         function change_name(a)

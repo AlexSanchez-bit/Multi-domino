@@ -1,5 +1,6 @@
 
 
+
 public class GeneralWinCondition : IWinCondition
 {
     IPlayer winner;
@@ -22,6 +23,7 @@ public class GeneralWinCondition : IWinCondition
             {
                 winner=a;
                 Console.WriteLine("se quedo sin fichas");
+         notify(winner);
                 return true;
             }
 

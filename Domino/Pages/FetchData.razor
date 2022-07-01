@@ -43,10 +43,11 @@ body
    @foreach(var b in a.GetKeys()){
     <div class="bg_player_key" id=@b.GetHashCode()>
       @foreach(var c in b.GetAllFaces()){
-      <img class="key_img" src="Assets/@c.GetRepresentation().png">
+      <img class="key_img" src="Assets/@GetFaceImage(c)">
       }
-    </div>    
+      </div>    
     }
+    </div>
     }
     </div>
 
@@ -62,6 +63,12 @@ body
         public Manager manager;
         public Thread hilo_juego;
         private IFace right,left;
+
+
+        private string GetFaceImage(IFace face)
+        {
+          return face.GetRepresentation()+".png";
+        }
 
         protected override void OnInitialized()
         {
@@ -90,7 +97,7 @@ body
 
         public void PlayKey(IKey key,int position)
         {
-        
+          JS.InvokeVoidAsync("remove_backround_key",key.GetHashCode()); 
         var front = position==1;
 
         if(right==null )
@@ -161,6 +168,8 @@ body
 
         public void ChangeName(string a)
         {        
+        JS.InvokeVoidAsync("show_backround_player",Playername);
+        JS.InvokeVoidAsync("hide_backround_player",a);
           Playername=a;
           var b = JS.InvokeVoidAsync("change_name",a);
         }
@@ -180,4 +189,4 @@ body
         }
        private string Playername="12";
        }
-       }
+       
