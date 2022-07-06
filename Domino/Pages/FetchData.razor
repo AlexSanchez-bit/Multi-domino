@@ -9,6 +9,20 @@ body
 
 <h1>Domino</h1>
 
+<div class="fullscreen" >
+  <input type="number" min="1" max="6" @bind="PlayerCount">
+  <div class="players_info">
+  @for(int i=0;i<player_count && i<6;i++)
+  {
+  <input placeholder="player name" id="player_@i" >
+  <select>
+    <option>Random</option>
+    <option>Botagorda</option>
+  </select>
+  }
+  </div>
+</div>
+
 <!-- Toast de Notificacion -->
 <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="toast">
   <div class="toast-header">
@@ -59,7 +73,10 @@ body
 
 
 @code {
-       public int board_count=9;
+        public string[]names = new string[6];
+        public int player_count=1;
+        public string PlayerCount{get{return player_count.ToString();}set{player_count=int.Parse(value);}}
+       public int board_count=0;
        public BlazorPrinter printer = new BlazorPrinter();              
         public Action<IPlayer,IEnumerable<IKey>> KeyDispenser=Dispensers.NormalDispenser;   
           public IEnumerable<IPlayer> Players;              
@@ -82,8 +99,19 @@ body
         printer.PlayKey=this.PlayKey;
         printer.NotifyWinner=this.NotifyWinner;        
         printer.SetBoardCount=SetBoardCount;
+        Players=new IPlayer[0]; 
+        }
 
-          var configs = new ConfigFile(new string[]{"prueba","Double9","Normal","Normal","Ordered","random"});
+
+        public void InitGame()
+        {
+            var data = new string[6];
+            for(int i=0;i<5;i++)
+            {
+              data[i]=Data_Saver.game_data[i];
+            }
+            data[5]="random";
+          var configs = new ConfigFile(data);
           var game_builder = new GameBuilder(configs);
           game_builder.ConnectGame (printer); 
           var players = new PlayerListBuilder(new (string,string)[]{("rodolfo","Random"),("maria","Botagorda"),("alfredo","Random"),("Manuel","Botagorda")},game_builder);

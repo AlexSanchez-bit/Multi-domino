@@ -21,18 +21,18 @@ public class GameBuilder
         {
             game_board=new LonganaTable();
         }
-     if(cf.GameTable=="mult5")
+     if(cf.GameTable=="multiplo de 5")
         {
             game_board=new Multp5Table();
         }
 //fichas
-        if(cf.Keyset=="Double9")
+        if(cf.Keyset=="Doble 9")
         {
             keyset= new NormalGenerator();
         }
 
         //selectors
-        if(cf.PlayerSelector=="Ordered")
+        if(cf.PlayerSelector=="Ordenado")
         {
             player_selector= new NormalPlayerSelector();
         }
@@ -45,9 +45,10 @@ public class GameBuilder
         {
             win_condition= new TournamentWinCondition(); 
         }
-         if(cf.WinCondition=="mult5")
+         if(cf.WinCondition=="multiplo de 5")
         {
             win_condition= new Multp5WinCondition(); 
+            player_selector.attach((IPlayerSelector)win_condition);
         }
     }
 
