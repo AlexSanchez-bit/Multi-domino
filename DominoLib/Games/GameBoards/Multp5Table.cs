@@ -16,7 +16,7 @@ public class Multp5Table : ITable
     }
     public void attach(ITableObserver observer)
     {
-        observer.SetSpaces(2);
+        observer.SetSpaces(4);
          observers.AddLast(observer);
     }
 
@@ -32,12 +32,18 @@ public class Multp5Table : ITable
 
     public void notify(IKey key, int position)
     {
-        throw new NotImplementedException();
+        foreach(var a in observers)
+        {
+            a.Update(new KeyPlayedEvent(key,position));
+        }
     }
 
     public void notify(KeyPlayedEvent eventdata)
     {
-        throw new NotImplementedException();
+        foreach(var a in observers)
+        {
+            a.Update(eventdata);
+        }
     }
 
     public IEnumerable<IKey> OnTableKeys()
@@ -51,6 +57,7 @@ public class Multp5Table : ITable
              foreach(var a in key.GetAllFaces())
              {
                  heads.Add(a);
+                 notify(key,3);
              }
          }
          for(int i=0;i<heads.Count;i++)
@@ -60,6 +67,10 @@ public class Multp5Table : ITable
                  heads[i] = key.GetFace(1);
              }
          }
+         notify(key,1);
+         notify(key,2);
+         notify(key,3);
+         notify(key,4);
     }
     public void PlayKey(IKey key)
     {
@@ -67,6 +78,8 @@ public class Multp5Table : ITable
         {
           Insert(key);
           board.AddLast(key);
+          var rand = new Random();
+          notify(key,rand.Next(1,4));
         }
     }
 

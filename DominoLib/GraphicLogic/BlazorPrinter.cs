@@ -10,10 +10,12 @@ public class BlazorPrinter : IScreen
     public Action RemovePlayerKeys{get;set;}
     public Action<string> PrintPlayerName{get;set;}
     public Action<string> NotifyWinner{get;set;}
+    public Action<int> SetBoardCount{get;set;}
 
     public void SetSpaces(int spacesnumb)
     {
         playable_heads = spacesnumb;
+        SetBoardCount(spacesnumb);
     }
 
     public void Start()

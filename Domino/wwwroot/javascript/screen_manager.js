@@ -1,6 +1,10 @@
 
 
-
+      function change_url(new_url)
+      {
+        console.log(new_url);
+        window.location=new_url;
+      }
 
       function add_background_player(playername)
       {
@@ -13,6 +17,8 @@
         holder.appendChild(name);
         document.getElementById("players_section").appendChild(holder);
       }
+
+        
       
       function remove_backround_key(key_id)
       {
@@ -65,20 +71,27 @@
             document.getElementById("toast").style.display="none";
         }
 
-        function remove_playerKeys()
+        function remove_playerKeys(playername)
         {
+            var mini_container = document.getElementById(playername);
             var container = document.getElementById("player_keys");
             var keys = document.getElementsByClassName("player_key");
             for(var a of keys )
             {
                container.removeChild(a);
             }
+        }
 
+        function add_to_center(faces)
+        {
+            var board = document.getElementById("center");
+            var key=create_board_key(faces);
+            board.appendChild(key);
         }
         
-        function add_to_board(faces,front)
+        function add_to_board(faces,front,board_numb)
         {
-            var board = document.getElementById("board");
+            var board = document.getElementById(`board_${board_numb}`);
             var key=create_board_key(faces);
             if(front)
             {
@@ -99,6 +112,7 @@
                 var image = document.createElement("img");
                 image.classList.add("card-img");
                 image.src=`Assets/${a}.png`;
+                image.alt=a;
                 key.appendChild(image);
             }
             return key;

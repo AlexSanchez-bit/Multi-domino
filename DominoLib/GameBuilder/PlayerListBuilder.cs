@@ -2,7 +2,7 @@ public class PlayerListBuilder
 {
 
     LinkedList<IPlayer> players;
-    public PlayerListBuilder(IEnumerable<(string,string)> player_info) 
+    public PlayerListBuilder(IEnumerable<(string,string)> player_info,GameBuilder game_data) 
     {
         players=new LinkedList<IPlayer>();
             foreach(var a in player_info)

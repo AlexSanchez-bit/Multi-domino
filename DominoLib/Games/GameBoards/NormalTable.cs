@@ -9,7 +9,7 @@ public class NormalTable : ITable
     IFace right;
     IFace left;
 
-    LinkedList<IObserver<KeyPlayedEvent>> observers;
+    LinkedList<ITableObserver> observers;
 
     string IRule.Description { get => "mesa normal de dos salidas";}
     string IRule.Name { get => "Normal";}
@@ -17,7 +17,7 @@ public class NormalTable : ITable
     public NormalTable()
     {
         board = new LinkedList<IKey>();
-        observers = new LinkedList<IObserver<KeyPlayedEvent>>();
+        observers = new LinkedList<ITableObserver>();
     }
     public void PlayKey(IKey key)
     {

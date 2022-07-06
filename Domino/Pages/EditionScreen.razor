@@ -1,0 +1,83 @@
+@page "/edit_screen"
+@inject NavigationManager nm 
+
+<PageTitle> Edition Screen</PageTitle>
+
+    Nombre de la partida:
+    <input type="text" @bind="game_name">
+    Tipo de Mesa
+    <select id="board" @bind="table_type">                                                                                                    
+    <option >Normal</option>   
+    <option>multiplo de 5</option>   
+    <option>longana</option>   
+    </select>
+    Pasador de turno
+    <select id="player_selector" @bind="playerselector">                                                                                                 
+    <option>Ordenado</option>   
+    <option>Aleatorio</option>   
+    </select>
+    Condicion de Ganar    
+    <select id="win_condition" @bind="wincondition">                                                                                                 
+    <option >Normal</option>   
+    <option>multiplo de 5</option>   
+    </select>
+    Tipo Fichas
+    <select id="keyset" @bind="keyset">                                                                                                 
+    <option>Doble 9</option>   
+    <option>Doble 6</option>   
+    <option>Colores</option>   
+    <option>Mixtas</option>   
+    </select>
+
+    <!--
+    Cantidad Jugadores
+    <input id="player_cant" type="number" min="1" max="6" @bind="inputValue" >
+    @for(int i=0;i< cant_jugadores && i<6;i++)
+     {
+    <label>Nombre del Jugador</label>                                         
+    <input type="text" id="name_@i"  @bind="names">
+    <label>Tipo de jugador</label>                                         
+    <select id="type_@i">                                                                                                 
+    <option selected="selected">Normal</option>   
+    <option>Botagorda</option>   
+    </select>
+     }
+    --->
+
+    <button @onclick="SetPlayers" >iniciarJuego</button>
+    <button>Guardar Partida</button>
+
+@code
+{
+public int cant_jugadores{get;set;}
+public string inputValue{get{return cant_jugadores.ToString();}
+set{cant_jugadores=int.Parse(value);}}
+
+public string game_name{get;set;}
+public string table_type{get;set;}
+public string wincondition{get;set;}
+public string playerselector{get;set;}
+public string keyset{get;set;}
+
+public void SetPlayers()
+{
+        string[] data = new string[5];
+        data[0]=game_name;
+        data[1]=keyset;
+        data[2]=table_type;
+        data[3]=wincondition;
+        data[4]=playerselector;
+        Data_Saver.game_data=data;
+
+        nm.NavigateTo("fetchdata");
+}
+
+        protected override void OnInitialized()
+        {
+        game_name="custom_game";
+        table_type="Normal";
+        wincondition="Normal";
+        playerselector="Ordenado";
+        keyset="Doble 9";
+        }
+}

@@ -32,7 +32,13 @@ body
 <div id="player_keys">
 </div>
 <!-- mostrar fichas de la mesa-->
-<div id="board">  
+<div class="board_container">
+<div class=" board" id="center">
+</div>
+@for(int i=1;i<=board_count;i++){
+<div id="board_@i" class="board">  
+</div>
+}
 </div>
 <!-- mostrar fichas de la mesa-->
 <!--Mostrar fichas del resto de jugadores -->
@@ -53,12 +59,14 @@ body
 
 
 @code {
+       public int board_count=9;
        public BlazorPrinter printer = new BlazorPrinter();              
         public Action<IPlayer,IEnumerable<IKey>> KeyDispenser=Dispensers.NormalDispenser;   
           public IEnumerable<IPlayer> Players;              
         public Manager manager;
         public Thread hilo_juego;
-        private IFace right,left;
+        private IFace[] playable_faces;
+        private IKey centerKey=null;
 
 
         private string GetFaceImage(IFace face)
@@ -68,18 +76,18 @@ body
 
         protected override void OnInitialized()
         {
-
-          var players = new PlayerListBuilder(new (string,string)[]{("rodolfo","Random"),("maria","Botagorda"),("alfredo","Random"),("Manuel","Botagorda")});
-          Players=players.GetPlayers();
         printer.PrintPlayerName=ChangeName;
         printer.PrintPlayerKeys=PutPlayerKeys;
         printer.RemovePlayerKeys=Removeplayerkeys;
         printer.PlayKey=this.PlayKey;
         printer.NotifyWinner=this.NotifyWinner;        
+        printer.SetBoardCount=SetBoardCount;
 
           var configs = new ConfigFile(new string[]{"prueba","Double9","Normal","Normal","Ordered","random"});
           var game_builder = new GameBuilder(configs);
           game_builder.ConnectGame (printer); 
+          var players = new PlayerListBuilder(new (string,string)[]{("rodolfo","Random"),("maria","Botagorda"),("alfredo","Random"),("Manuel","Botagorda")},game_builder);
+          Players=players.GetPlayers();
         manager = game_builder.BuildGame(players.GetPlayers(),KeyDispenser);                   
         hilo_juego=new Thread(()=>{
         manager.SimulateGame();
@@ -93,49 +101,36 @@ body
         }
 
 
+        public void SetBoardCount(int count)
+        {
+          board_count=count;
+          playable_faces=new IFace[count];
+        }
 
         public void PlayKey(IKey key,int position)
         {
           JS.InvokeVoidAsync("remove_backround_key",key.GetHashCode()); 
-        var front = position==1;
-
-        if(right==null )
-        {
-          left=key.GetFace(0);
-          right=key.GetFace(key.GetAllFaces().Count()-1);
-          JS.InvokeVoidAsync("add_to_board",Create_Key(key,false),false);
-          return;
-        }
-
-          if(front)
+           
+          if(centerKey==null)
           {
-            if(key.GetFace(key.GetAllFaces().Count()-1).Equals(left))
-            {
-              left=key.GetFace(0);
-              JS.InvokeVoidAsync("add_to_board",Create_Key(key,false),true);
-              return;
-              }else
-              {
-              left=key.GetFace(key.GetAllFaces().Count()-1);
-              JS.InvokeVoidAsync("add_to_board",Create_Key(key,true),true);
-              return;
-              }
+           var faces = Create_Key(key,false);
+            centerKey=key;        
+           JS.InvokeVoidAsync("add_to_center",faces); 
+          }
+
+          var to_comparehead=playable_faces[position-1]==null?centerKey.GetFace((position-1)%key.GetAllFaces().Count()):playable_faces[position-1];
+          LinkedList<string> info;
+          if(key.GetFace(0).Equals(to_comparehead))
+          {
+            info = Create_Key(key,false);
+            playable_faces[position-1]=key.GetFace(key.GetAllFaces().Count()-1);
           }
           else{
-
-            if(key.GetFace(0).Equals(right))
-            {
-              right=key.GetFace(key.GetAllFaces().Count()-1);
-              JS.InvokeVoidAsync("add_to_board",Create_Key(key,false),false);
-              return;
-              }else
-              {
-              right=key.GetFace(0);
-              JS.InvokeVoidAsync("add_to_board",Create_Key(key,true),false);
-              return;
-              }
-
+            info = Create_Key(key,true);
+            playable_faces[position-1]=key.GetFace(0);
           }
+
+          JS.InvokeVoidAsync("add_to_board",info,false,position); 
         }
 
         private LinkedList<string> Create_Key(IKey key,bool reverso)
@@ -155,16 +150,6 @@ body
         JS.InvokeVoidAsync("remove_playerKeys");
         }
         
-        private void update_face(int dir,IFace face)
-        {
-          if(dir==1)
-          {
-          left=face;
-          }else{
-          right=face;
-          }
-        }
-
         public void ChangeName(string a)
         {        
         JS.InvokeVoidAsync("show_backround_player",Playername);
