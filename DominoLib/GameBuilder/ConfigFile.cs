@@ -21,10 +21,10 @@ string save_direction="../SavedGames";
 
         string game_file="";
 
-        game_file+=string.Format("KeySet:{0},\n",this.Keyset);
-         game_file+=string.Format("Board:{0},\n",GameTable);
-         game_file+=string.Format("WinCondition:{0},\n",WinCondition);
-         game_file+=string.Format("PlayerSelector:{0},\n",PlayerSelector);   
+        game_file+=string.Format("KeySet:{0}\n",this.Keyset);
+         game_file+=string.Format("Board:{0}\n",GameTable);
+         game_file+=string.Format("WinCondition:{0}\n",WinCondition);
+         game_file+=string.Format("PlayerSelector:{0}\n",PlayerSelector);   
          game_file+=string.Format("KeyDispenser:{0}\n",KeyDispenser);  
         return game_file;
     }
@@ -43,13 +43,13 @@ string save_direction="../SavedGames";
     StreamReader sr = new StreamReader(save_direction+"/"+file_name);
     var reading = sr.ReadToEnd().Split("\n");
     sr.Close();
-      string[] configs = new string[6];
-    int index=0;
+    List<string> configs=new List<string>();
         foreach(var a in reading)
         {
-          configs[index++]=a.Split(":")[1];
+          if(a=="" || a==null)continue;
+          configs.Add(a.Split(":")[1]);
         }
-        init_Config_file(configs);
+        init_Config_file(configs.ToArray());
   }
 
   public ConfigFile(string[] configs)

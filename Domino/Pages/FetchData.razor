@@ -215,12 +215,7 @@ body
         {
           foreach(IKey a in keys)
           {
-          
-          var info = new List<string>();
-          foreach(var face in a.GetAllFaces())
-          {
-            info.Add(face.GetRepresentation());
-          }
+            var info=Create_Key(a,false);          
             JS.InvokeVoidAsync("Add_playerKeys",info);
           }
         }

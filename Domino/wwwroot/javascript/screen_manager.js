@@ -72,13 +72,15 @@
 
         function remove_playerKeys(playername)
         {
-            var mini_container = document.getElementById(playername);
             var container = document.getElementById("player_keys");
             var keys = document.getElementsByClassName("player_key");
-            for(var a of keys )
+          while(container.childNodes.length >0)
             {
+              for(let a of keys){
                container.removeChild(a);
-            }
+                
+                  }
+             }
         }
 
         function add_to_center(faces)

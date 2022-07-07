@@ -3,7 +3,12 @@
 
 @foreach(var a in games)
 {
-<h1>a</h1>
+<div class="prefab_game">
+<h1>@a</h1>
+<button>delete game</button>
+<button>see configs</button>
+<button>playgame</button>
+</div>
 }
 
 
@@ -17,10 +22,34 @@ protected override void OnInitialized()
  var directory = Directory.GetFiles("../SavedGames");  
  foreach(var b in directory)
  {
- games.Add(b);
- }
+ var game =b.Split("/")[2].Split(".")[0];
+ games.Add(game);
+ } 
 
 }
 
+public string GetDescription(string game_name)
+{
+   var cf = new ConfigFile(string.Format("../SavedGames/{0}.dom",game_name));
+   var b = new GameBuilder(cf);
+
+   string result="";
+   result+=b.game_board.Name+"\n";
+   result+=b.game_board.Description+"\n";
+   result+=b.win_condition.Name+"\n";
+   result+=b.win_condition.Description+"\n";
+   result+=b.player_selector.Name+"\n";
+   result+=b.player_selector.Description+"\n";
+   result+=b.keyset.Name+"\n";
+   result+=b.keyset.Description+"\n";
+
+   return result;
+
+}
+
+public void DeleteGame(string game_name)
+{
+  File.Delete(string.Format("../SavedGames/{0}.dom",game_name));
+}
 
 }
