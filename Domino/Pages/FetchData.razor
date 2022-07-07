@@ -9,18 +9,27 @@ body
 
 <h1>Domino</h1>
 
-<div class="fullscreen" >
+<div class="fullscreen playermenu" id="gameinit" >
+  <label> Cantidad de jugadores</label>
   <input type="number" min="1" max="6" @bind="PlayerCount">
   <div class="players_info">
-  @for(int i=0;i<player_count && i<6;i++)
+  @for( int index=0;index<player_count && index<6;index++)
   {
-  <input placeholder="player name" id="player_@i" >
-  <select>
-    <option>Random</option>
+                int loop_index=index;
+  <input placeholder="player name"  @bind="names[loop_index]" >
+  <select @bind="types[loop_index]">
+    <option selected="true">Random</option>
     <option>Botagorda</option>
   </select>
   }
   </div>
+
+  <label >Forma de repartir la ficha</label>
+  <select @bind="repartition">
+    <option>Random</option>
+  </select>
+
+  <button @onclick="InitGame" class="button button-primary">IniciarPartida</button>
 </div>
 
 <!-- Toast de Notificacion -->
@@ -73,10 +82,15 @@ body
 
 
 @code {
+//valores de inicialisacion
         public string[]names = new string[6];
+        public string[]types = new string[]{"Random","Random","Random","Random","Random","Random"};
+        public string repartition="Random";
         public int player_count=1;
         public string PlayerCount{get{return player_count.ToString();}set{player_count=int.Parse(value);}}
        public int board_count=0;
+
+       //printers y auxiliares de la grafica
        public BlazorPrinter printer = new BlazorPrinter();              
         public Action<IPlayer,IEnumerable<IKey>> KeyDispenser=Dispensers.NormalDispenser;   
           public IEnumerable<IPlayer> Players;              
@@ -105,16 +119,26 @@ body
 
         public void InitGame()
         {
+            
+
+        JS.InvokeVoidAsync("remove_backround_key","gameinit");
+          var players_array=new (string,string)[player_count];
+          for(int i=0;i<player_count;i++)
+          {
+            players_array[i]=(names[i],types[i]);
+          }
             var data = new string[6];
             for(int i=0;i<5;i++)
             {
               data[i]=Data_Saver.game_data[i];
             }
-            data[5]="random";
+            data[5]=repartition;
+
+
           var configs = new ConfigFile(data);
           var game_builder = new GameBuilder(configs);
           game_builder.ConnectGame (printer); 
-          var players = new PlayerListBuilder(new (string,string)[]{("rodolfo","Random"),("maria","Botagorda"),("alfredo","Random"),("Manuel","Botagorda")},game_builder);
+          var players = new PlayerListBuilder(players_array,game_builder);
           Players=players.GetPlayers();
         manager = game_builder.BuildGame(players.GetPlayers(),KeyDispenser);                   
         hilo_juego=new Thread(()=>{
@@ -144,9 +168,10 @@ body
            var faces = Create_Key(key,false);
             centerKey=key;        
            JS.InvokeVoidAsync("add_to_center",faces); 
+           return;
           }
 
-          var to_comparehead=playable_faces[position-1]==null?centerKey.GetFace((position-1)%key.GetAllFaces().Count()):playable_faces[position-1];
+          var to_comparehead=playable_faces[position-1]==null?centerKey.GetFace(position%2==0?centerKey.GetAllFaces().Count()-1:0):playable_faces[position-1];
           LinkedList<string> info;
           if(key.GetFace(0).Equals(to_comparehead))
           {

@@ -48,7 +48,7 @@ public class GameBuilder
          if(cf.WinCondition=="multiplo de 5")
         {
             win_condition= new Multp5WinCondition(); 
-            player_selector.attach((IPlayerSelector)win_condition);
+            player_selector.attach((IPlayerChangedObserver)win_condition);
         }
     }
 

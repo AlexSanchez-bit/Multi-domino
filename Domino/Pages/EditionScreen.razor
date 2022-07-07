@@ -46,7 +46,7 @@
     --->
 
     <button @onclick="SetPlayers" >iniciarJuego</button>
-    <button>Guardar Partida</button>
+    <button @onclick="SaveData">Guardar Partida</button>
 
 @code
 {
@@ -62,7 +62,7 @@ public string keyset{get;set;}
 
 public void SetPlayers()
 {
-        string[] data = new string[5];
+        string[] data = new string[6];
         data[0]=game_name;
         data[1]=keyset;
         data[2]=table_type;
@@ -71,6 +71,20 @@ public void SetPlayers()
         Data_Saver.game_data=data;
 
         nm.NavigateTo("fetchdata");
+}
+
+public void SaveData()
+{
+        string[] data = new string[6];
+        data[0]=game_name;
+        data[1]=keyset;
+        data[2]=table_type;
+        data[3]=wincondition;
+        data[4]=playerselector;
+        data[5]="b";
+        var game_data= new ConfigFile(data);
+        game_data.SaveData();
+
 }
 
         protected override void OnInitialized()

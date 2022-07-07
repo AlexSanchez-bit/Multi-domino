@@ -1,0 +1,26 @@
+@page "/savedGames"
+
+
+@foreach(var a in games)
+{
+<h1>a</h1>
+}
+
+
+@code
+{
+List<string> games;
+
+protected override void OnInitialized()
+{
+    games=new List<string>();
+ var directory = Directory.GetFiles("../SavedGames");  
+ foreach(var b in directory)
+ {
+ games.Add(b);
+ }
+
+}
+
+
+}

@@ -1,5 +1,4 @@
 
-
       function change_url(new_url)
       {
         console.log(new_url);

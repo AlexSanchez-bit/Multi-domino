@@ -5,13 +5,14 @@
 public class ConfigFile
 {
 
-string save_direction="~/datos/Carpeta nueva/datos/Carpeta nueva/clase_practica/Domino/SavedGames";
+string save_direction="../SavedGames";
+
 
     public void SaveData()
     {
         string data=string.Format("Name:{0}\n",this.GameName);
         data+=Parse();
-        StreamWriter sw = new StreamWriter(save_direction+"/"+this.GameName);
+        StreamWriter sw = new StreamWriter(save_direction+"/"+this.GameName+".dom");        
         sw.Write(data);
         sw.Close();    
     }
