@@ -2,51 +2,46 @@
 @inject NavigationManager nm 
 
 <PageTitle> Edition Screen</PageTitle>
-
+<div class="edition-screen">
+<div class="form-group col-auto p-5 text-center main-container" width="30vw">
     Nombre de la partida:
-    <input type="text" @bind="game_name">
+    <input class="form-control" type="text" @bind="game_name">
     Tipo de Mesa
-    <select id="board" @bind="table_type">                                                                                                    
+    <select  class="form-control" id="board" @bind="table_type">                                                                                                    
     <option >Normal</option>   
     <option>multiplo de 5</option>   
     <option>longana</option>   
     </select>
     Pasador de turno
-    <select id="player_selector" @bind="playerselector">                                                                                                 
+    <select class="form-control"id="player_selector" @bind="playerselector">                                                                                                 
     <option>Ordenado</option>   
     <option>Aleatorio</option>   
     </select>
     Condicion de Ganar    
-    <select id="win_condition" @bind="wincondition">                                                                                                 
+    <select class="form-control" id="win_condition" @bind="wincondition">                                                                                                 
     <option >Normal</option>   
     <option>multiplo de 5</option>   
     <option>Tournament</option>   
     </select>
     Tipo Fichas
-    <select id="keyset" @bind="keyset">                                                                                                 
+    <select class="form-control" id="keyset" @bind="keyset">                                                                                                 
     <option>Doble 9</option>   
     <option>Doble 6</option>   
     <option>Colores</option>   
     <option>Mixtas</option>   
-    </select>
+    </select>   
 
-    <!--
-    Cantidad Jugadores
-    <input id="player_cant" type="number" min="1" max="6" @bind="inputValue" >
-    @for(int i=0;i< cant_jugadores && i<6;i++)
-     {
-    <label>Nombre del Jugador</label>                                         
-    <input type="text" id="name_@i"  @bind="names">
-    <label>Tipo de jugador</label>                                         
-    <select id="type_@i">                                                                                                 
-    <option selected="selected">Normal</option>   
-    <option>Botagorda</option>   
-    </select>
-     }
-    --->
-
-    <button @onclick="SetPlayers" >iniciarJuego</button>
-    <button @onclick="SaveData">Guardar Partida</button>
+    <button @onclick="SetPlayers" class="btn btn-outline-success my-2 my-sm-0">iniciarJuego</button>
+    <button @onclick="SaveData"  class="btn btn-outline-success my-2 my-sm-0">Guardar Partida</button>
+    </div>
+    <div class="form-group col-auto p-5 text-center main-container">
+        <h3>Descripcion: </h3>
+        @foreach (var item in GetGameInfo.Split('\n'))
+        {
+            <h5>@item</h5>
+        }
+    </div>
+</div>
 
 @code
 {
@@ -59,6 +54,34 @@ public string table_type{get;set;}
 public string wincondition{get;set;}
 public string playerselector{get;set;}
 public string keyset{get;set;}
+
+
+public string GetGameInfo{
+get{
+        string[] data = new string[6];
+        data[0]=game_name;
+        data[1]=keyset;
+        data[2]=table_type;
+        data[3]=wincondition;
+        data[4]=playerselector;
+        var cf = new ConfigFile(data);
+   var b = new GameBuilder(cf);
+
+   string result="";
+   result+="tipo de mesa: "+b.game_board.Name+"\n";
+   result+=b.game_board.Description+"\n";
+   result+="seleccion del ganador: "+b.win_condition.Name+"\n";
+   result+=b.win_condition.Description+"\n";
+   result+="pasador de turno: "+b.player_selector.Name+"\n";
+   result+=b.player_selector.Description+"\n";
+   result+="tipo de ficha: "+b.keyset.Name+"\n";
+   result+=b.keyset.Description+"\n";
+
+   return result;
+ 
+   }
+   }
+
 
 public void SetPlayers()
 {

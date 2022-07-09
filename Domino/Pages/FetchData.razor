@@ -29,7 +29,7 @@ body
     <option>Random</option>
   </select>
 
-  <button @onclick="InitGame" class="button button-primary">IniciarPartida</button>
+  <button @onclick="InitGame" class="btn btn-success btn-outline-info">IniciarPartida</button>
 </div>
 
 <!-- Toast de Notificacion -->
@@ -46,7 +46,8 @@ body
     Hello, world! This is a toast message.
   </div>
 </div>
-
+<div class="player_container">
+<div class="current_player_info">
 <!-- mostrar los turnos-->
 <h5 id="player_name" >Turno de:</h5>
 <!-- mostrar los turnos -->
@@ -54,18 +55,11 @@ body
 <!--Mostrar fichas del jugador -->
 <div id="player_keys">
 </div>
-<!-- mostrar fichas de la mesa-->
-<div class="board_container">
-<div class=" board" id="center">
 </div>
-@for(int i=1;i<=board_count;i++){
-<div id="board_@i" class="board">  
-</div>
-}
-</div>
+
 <!-- mostrar fichas de la mesa-->
 <!--Mostrar fichas del resto de jugadores -->
-<div id="players_section">
+<div id="players_section" >
   @foreach(var a in Players){
   <div id=@a.GetIdentifier() class="backgorund_player">
     <h5 class="bg_player_name">@a.GetIdentifier()</h5>
@@ -80,7 +74,16 @@ body
     }
     </div>
 
-
+</div>
+<!-- mostrar fichas de la mesa-->
+<div class="board_container">
+<div class=" board fixed" id="center">
+</div>
+@for(int i=1;i<=board_count;i++){
+<div id="board_@i" class="board fixed">  
+</div>
+}
+</div>
 @code {
 //valores de inicialisacion
         public string[]names = new string[6];
@@ -107,6 +110,7 @@ body
 
         protected override void OnInitialized()
         {
+        printer=new BlazorPrinter();
         printer.PrintPlayerName=ChangeName;
         printer.PrintPlayerKeys=PutPlayerKeys;
         printer.RemovePlayerKeys=Removeplayerkeys;

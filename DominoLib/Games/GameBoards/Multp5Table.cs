@@ -16,7 +16,7 @@ public class Multp5Table : ITable
     }
     public void attach(ITableObserver observer)
     {
-        observer.SetSpaces(4);
+        observer.SetSpaces(6);
          observers.AddLast(observer);
     }
 
@@ -71,6 +71,8 @@ public class Multp5Table : ITable
          notify(key,2);
          notify(key,3);
          notify(key,4);
+           notify(key,5);
+             notify(key,6);
     }
     public void PlayKey(IKey key)
     {

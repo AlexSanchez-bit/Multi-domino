@@ -1,0 +1,14 @@
+.main-container{
+    width: 30vw;
+    font-size: large;    ;
+}
+
+.main-container select
+{
+    margin-bottom: 10px;
+    
+}
+
+.edition-screen{
+    display: inline-flex;
+}

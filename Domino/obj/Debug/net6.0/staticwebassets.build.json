@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "trHjqjWlh71d4XaZYyxqL/XNL1EQP6Lm1UZUB9wnFW0=",
+  "Hash": "O3vqFxwlqMEQQcb2sdKCzbNWQP7Vx3OrpAVyIx6pUbg=",
   "Source": "Domino",
   "BasePath": "_content/Domino",
   "Mode": "Default",
@@ -306,6 +306,40 @@
       "OriginalItemSpec": "wwwroot/css/bootstrap/bootstrap.min.css.map"
     },
     {
+      "Identity": "/home/nadie/datos/Carpeta nueva/clase_practica/Domino/Domino/wwwroot/css/edition_scren.css",
+      "SourceId": "Domino",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/nadie/datos/Carpeta nueva/clase_practica/Domino/Domino/wwwroot/",
+      "BasePath": "_content/Domino",
+      "RelativePath": "css/edition_scren.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/edition_scren.css"
+    },
+    {
+      "Identity": "/home/nadie/datos/Carpeta nueva/clase_practica/Domino/Domino/wwwroot/css/main_screen.css",
+      "SourceId": "Domino",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/nadie/datos/Carpeta nueva/clase_practica/Domino/Domino/wwwroot/",
+      "BasePath": "_content/Domino",
+      "RelativePath": "css/main_screen.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/main_screen.css"
+    },
+    {
       "Identity": "/home/nadie/datos/Carpeta nueva/clase_practica/Domino/Domino/wwwroot/css/open-iconic/FONT-LICENSE",
       "SourceId": "Domino",
       "SourceType": "Discovered",
@@ -457,6 +491,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/open-iconic/README.md"
+    },
+    {
+      "Identity": "/home/nadie/datos/Carpeta nueva/clase_practica/Domino/Domino/wwwroot/css/saved_games.css",
+      "SourceId": "Domino",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/nadie/datos/Carpeta nueva/clase_practica/Domino/Domino/wwwroot/",
+      "BasePath": "_content/Domino",
+      "RelativePath": "css/saved_games.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/saved_games.css"
     },
     {
       "Identity": "/home/nadie/datos/Carpeta nueva/clase_practica/Domino/Domino/wwwroot/css/site.css",

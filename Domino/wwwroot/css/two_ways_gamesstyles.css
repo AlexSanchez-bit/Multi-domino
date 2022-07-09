@@ -1,4 +1,76 @@
 
+.player_container{
+  display: inline-flex;
+  z-index: 100;
+}
+
+
+.fixed{
+  position: fixed;
+}
+
+#center
+{
+  width: auto;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  overflow: hidden;
+}
+#board_1
+{ 
+
+
+  top:41%;
+  left: 5.9%;
+  transform: translate(-50%,-50%);
+  align-items:flex-end;
+  transform: rotate(180deg);
+}
+
+#board_2
+{
+  top:50%;  
+  left: 74%;
+  transform: translate(-50%,-50%);  
+  align-items:flex-start;
+  justify-content: left;
+}
+
+#board_3
+{
+  top:-6%;
+  left: 32%;
+  transform: translate(-50%,-50%);
+  align-items:flex-start;
+  transform: rotate(-90deg);
+}
+#board_4
+{
+  top:85%;
+  left: 29%;
+  transform: translate(-50%,-50%);
+  align-items:flex-start;
+  transform: rotate(90deg);
+}
+
+#board_5
+{
+  top:70%;
+  left: 11%;
+  transform: translate(-50%,-50%);
+  align-items:flex-start;
+  transform: rotate(140deg);
+}
+#board_6
+{
+  top:5%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  align-items:flex-start;
+  transform: rotate(-45deg);
+}
+
 .top-row[b-dd5ekcz9mg]
 {
   display:none;
@@ -19,11 +91,12 @@
 
 .board
 {
-  height:100px;
-  overflow:scroll;
+  width: 40vw;
+  height:100px;  
   display:flex;
   flex-direction:row;    
-  align-items:center;
+  overflow-x: scroll;
+  overflow-y: hidden;
 }
 
 
