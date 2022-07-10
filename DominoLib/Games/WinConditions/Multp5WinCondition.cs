@@ -8,7 +8,7 @@ public class Multp5WinCondition : IWinCondition,IPlayerChangedObserver
 
     public string Description => "condicion de parada de los multiplos de 5";
 
-    public string Name => "mult5";
+    public string Name => "multiplo de 5";
 
     public Multp5WinCondition()
     {

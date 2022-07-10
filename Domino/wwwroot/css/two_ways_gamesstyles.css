@@ -19,14 +19,12 @@
 }
 #board_1
 { 
-
-
-  top:41%;
-  left: 5.9%;
+  top:42.5%;
+  left: 6%;
   transform: translate(-50%,-50%);
-  align-items:flex-end;
-  transform: rotate(180deg);
+  transform:rotatey(180deg)
 }
+
 
 #board_2
 {
@@ -121,11 +119,11 @@
 
 
 .onboardKey{
-    width:100px;
   display:flex;
+  font-size:1.5vw;  
   flex-direction:row;    
     height:50px;
-    box-shadow:10px 7px 10px BLACK;
+    box-shadow:10px 7px 10px BLACK, inset 0px 0px 5px BLACK;
     margin:3px;
         }
 

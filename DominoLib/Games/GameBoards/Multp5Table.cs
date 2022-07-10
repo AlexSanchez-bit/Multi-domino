@@ -6,7 +6,7 @@ public class Multp5Table : ITable
 
     public string Description => "tablero con regla de multiplo de 5";
 
-    public string Name => "mult5";
+    public string Name => "multiplo de 5";
 
     public Multp5Table()
     {

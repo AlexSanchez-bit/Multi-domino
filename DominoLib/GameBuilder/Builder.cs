@@ -30,18 +30,21 @@ public class GameBuilder
         {
             keyset= new NormalGenerator();
         }
-
         //selectors
         if(cf.PlayerSelector=="Ordenado")
         {
             player_selector= new NormalPlayerSelector();
+        }
+        if(cf.PlayerSelector=="Aleatorio")
+        {
+            player_selector= new RandomSelector();
         }
         //winconditions
         if(cf.WinCondition=="Normal")
         {
             win_condition= new GeneralWinCondition(); 
         }
-        if(cf.WinCondition=="Tournament")
+        if(cf.WinCondition=="Torneo")
         {
             win_condition= new TournamentWinCondition(); 
         }

@@ -7,9 +7,9 @@ public class TournamentWinCondition : IWinCondition
     int higherScore=int.MinValue;
     Dictionary<IPlayer,int> wins;
 
-    public string Description =>"condicion de parada para torneos";
+    public string Description =>"condicion de parada para jugar torneos";
 
-    public string Name => "Tournament";
+    public string Name => "Torneo";
 
     public TournamentWinCondition()
     {
@@ -19,7 +19,7 @@ public class TournamentWinCondition : IWinCondition
 
     private void InitPlayers(IEnumerable<IPlayer> players)
     {
-          wins = new Dictionary<IPlayer, int>();
+        wins = new Dictionary<IPlayer, int>();
         foreach(var a in players)
         {
             wins.Add(a,0);

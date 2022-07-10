@@ -1,6 +1,6 @@
 Name:custom_game
 KeySet:Doble 9
-Board:Normal
-WinCondition:Normal
+Board:multiplo de 5
+WinCondition:multiplo de 5
 PlayerSelector:Ordenado
 KeyDispenser:b
