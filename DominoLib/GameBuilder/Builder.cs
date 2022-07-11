@@ -25,10 +25,30 @@ public class GameBuilder
         {
             game_board=new Multp5Table();
         }
+     if(cf.GameTable=="Mesa de cartas")
+     {
+         game_board=new CardGameTable();
+     }
 //fichas
         if(cf.Keyset=="Doble 9")
         {
             keyset= new NormalGenerator();
+        }
+        if(cf.Keyset=="Doble 6")
+        {
+            keyset= new Double6Generator();
+        }
+        if(cf.Keyset=="Fichas de colores")
+        {
+            keyset= new ColorKeyGenerator();
+        }
+        if(cf.Keyset=="Cartas")
+        {
+            keyset=new CardGenerator();
+        }
+        if(cf.Keyset=="Aleatorio")
+        {
+            keyset=new RandomizedKeyGenerator();
         }
         //selectors
         if(cf.PlayerSelector=="Ordenado")
@@ -39,14 +59,19 @@ public class GameBuilder
         {
             player_selector= new RandomSelector();
         }
+        if(cf.PlayerSelector=="Turnos juego de Cartas")
+        {
+            player_selector=new CardGamePlayerSelector();
+            game_board.attach((ITableObserver)player_selector);
+        }
         //winconditions
         if(cf.WinCondition=="Normal")
         {
             win_condition= new GeneralWinCondition(); 
         }
-        if(cf.WinCondition=="Torneo")
+        if(cf.WinCondition=="Shangai")
         {
-            win_condition= new TournamentWinCondition(); 
+            win_condition= new CardGameWinCondition(); 
         }
          if(cf.WinCondition=="multiplo de 5")
         {

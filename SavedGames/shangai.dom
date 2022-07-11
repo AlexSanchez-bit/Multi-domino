@@ -1,0 +1,6 @@
+Name:shangai
+KeySet:Cartas
+Board:Mesa de cartas
+WinCondition:Shangai
+PlayerSelector:Turnos juego de Cartas
+KeyDispenser:b

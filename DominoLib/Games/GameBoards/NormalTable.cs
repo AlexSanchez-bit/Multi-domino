@@ -45,24 +45,21 @@ public class NormalTable : ITable
 
        if(derecha)
        {
-           foreach(var a in faces)
-            {
-                if(!a.Equals(right))
-                {
-                    right=a;                  
-                    break;
-                 }
-            }    
+           if(key.GetFace(0).Equals(right))
+           {
+               right=key.GetFace(key.GetAllFaces().Count()-1);
+           }else{
+               right=key.GetFace(0);
+           }
            notify(key,1); 
               return;   
        }    
-        foreach(var a in faces)
-            {
-                if(!a.Equals(left)){
-                    left=a;
-                    break;
-                  }
-            }
+           if(key.GetFace(0).Equals(left))
+           {
+               left=key.GetFace(key.GetAllFaces().Count()-1);
+           }else{
+               left=key.GetFace(0);
+           }
              notify(key,2); 
     }
 

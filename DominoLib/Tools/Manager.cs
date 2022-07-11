@@ -28,6 +28,12 @@
         foreach(var player in this.player_list)
         {
             repartir_fichas(player,this.keyset);
+        }        
+        RobaitoPlayer.list_of_keys= new Stack<IKey>();        
+        foreach(var a in keyset)
+        {
+            if(player_list.Any(elem=>elem.GetKeys().Contains(a)))continue;
+          RobaitoPlayer.list_of_keys.Push(a);
         }
         next_player.SetPlayerList(player_list);
     }

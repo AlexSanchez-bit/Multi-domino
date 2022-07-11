@@ -7,7 +7,7 @@ public class NormalKey : IKey
 
     public bool Equals(IKey other)
     {
-        return other.GetAllFaces().All((elem)=>elem.Equals(faces[0])||elem.Equals(faces[1]));
+        return other.GetAllFaces().Any((elem)=>elem.Equals(faces[0])||elem.Equals(faces[1]));
     }
     public NormalKey(int sideA,int sideB)
     {

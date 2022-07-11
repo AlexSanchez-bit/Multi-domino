@@ -10,25 +10,28 @@
     <select  class="form-control" id="board" @bind="table_type">                                                                                                    
     <option >Normal</option>   
     <option>multiplo de 5</option>   
-    <option>longana</option>   
+    <option>Mesa de cartas</option>   
+ <option>longana</option>   
     </select>
     Pasador de turno
     <select class="form-control"id="player_selector" @bind="playerselector">                                                                                                 
     <option>Ordenado</option>   
-    <option>Aleatorio</option>   
+    <option>Aleatorio</option> 
+    <option>Turnos juego de Cartas</option>  
     </select>
     Condicion de Ganar    
     <select class="form-control" id="win_condition" @bind="wincondition">                                                                                                 
     <option >Normal</option>   
     <option>multiplo de 5</option>   
-    <option>Tournament</option>   
+    <option>Shangai</option>   
     </select>
     Tipo Fichas
     <select class="form-control" id="keyset" @bind="keyset">                                                                                                 
     <option>Doble 9</option>   
     <option>Doble 6</option>   
-    <option>Colores</option>   
-    <option>Mixtas</option>   
+    <option>Fichas de colores</option>   
+    <option>Cartas</option>   
+    <option>Aleatorio</option>   
     </select>   
 
     <button @onclick="SetPlayers" class="btn btn-outline-success my-2 my-sm-0">iniciarJuego</button>
