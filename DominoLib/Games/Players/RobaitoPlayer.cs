@@ -39,10 +39,11 @@ public class RobaitoPlayer : IPlayer
     private void Steal(ITable table)
     {
         if(!HaveSteal(table))return;
-        List<IKey> hand =  Player.GetKeys().ToList();
+        List<IKey> hand =  new List<IKey>();
         while(HaveSteal(table)){
-            var stealed_key  = RobaitoPlayer.list_of_keys.Pop();
+            var stealed_key  = RobaitoPlayer.list_of_keys.Pop();            
             hand.Add(stealed_key);
+            if(table.ValidPlay(stealed_key))break;
         }
             Player.SetData(hand);
         
@@ -50,7 +51,7 @@ public class RobaitoPlayer : IPlayer
 
     public void SimulateRound(ITable table)
     {
-            Steal(table);
         Player.SimulateRound(table);
+            Steal(table);
     }
 }

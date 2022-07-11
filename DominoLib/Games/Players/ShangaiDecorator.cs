@@ -32,7 +32,7 @@ public class ShangaiDecorator : IPlayer
         if(parobar!=0)
         {
             if(RobaitoPlayer.list_of_keys.Count()!=0){
-            var hand = Player.GetKeys().ToList();
+            var hand =new List<IKey>();
             for(int i=0;i<parobar+1;i++)
             {
                 hand.Add(RobaitoPlayer.list_of_keys.Pop());
