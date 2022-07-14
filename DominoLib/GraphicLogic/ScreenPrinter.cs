@@ -114,8 +114,16 @@ public class ScreenPrinter:IScreen
 
 
      public void Update(IPlayer eventinfo)
-    {       
-        Console.WriteLine(eventinfo.GetIdentifier());
+    {   
+        Console.Clear();            
+        int width = Console.WindowWidth;
+        int height = Console.WindowHeight;
+        var message =string.Format("Ha Ganado: {0}",eventinfo.GetIdentifier());
+        Console.SetCursorPosition((width/2)-message.Length/2,height/2);
+        Console.WriteLine(message);
+        Stop();
+        Thread.Sleep(50000);
+
     }
 
 

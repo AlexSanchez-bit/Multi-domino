@@ -1,0 +1,6 @@
+Name:domino de colores
+KeySet:Fichas de colores
+Board:Normal
+WinCondition:Normal
+PlayerSelector:Ordenado
+KeyDispenser:b

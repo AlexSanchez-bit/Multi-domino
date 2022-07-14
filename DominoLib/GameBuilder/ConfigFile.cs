@@ -51,6 +51,19 @@ string save_direction="../SavedGames";
         }
         init_Config_file(configs.ToArray());
   }
+  public ConfigFile(string file_name,string load_direction)
+  {
+    StreamReader sr = new StreamReader(load_direction+"/"+file_name);
+    var reading = sr.ReadToEnd().Split("\n");
+    sr.Close();
+    List<string> configs=new List<string>();
+        foreach(var a in reading)
+        {
+          if(a=="" || a==null)continue;
+          configs.Add(a.Split(":")[1]);
+        }
+        init_Config_file(configs.ToArray());
+  }
 
   public ConfigFile(string[] configs)
   {

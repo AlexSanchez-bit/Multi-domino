@@ -14,6 +14,12 @@
     padding:100px;
 }
 
+.fullscreen label
+{
+    color:#ffffff;
+    font-size:3vw;
+}
+
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;

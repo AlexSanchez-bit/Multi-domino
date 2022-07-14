@@ -78,6 +78,39 @@
         }
       },
       {
+        "HashCode": 2105340167,
+        "Kind": "Components.Component",
+        "Name": "Domino.Pages.FetchData",
+        "AssemblyName": "Domino",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "FetchData"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "Domino.Pages.FetchData"
+        }
+      },
+      {
+        "HashCode": -1011755255,
+        "Kind": "Components.Component",
+        "Name": "Domino.Pages.FetchData",
+        "AssemblyName": "Domino",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Domino.Pages.FetchData"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "Domino.Pages.FetchData",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
         "HashCode": 1091822271,
         "Kind": "Components.Component",
         "Name": "Domino.Pages.Index",
@@ -140,39 +173,6 @@
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
           "Common.TypeName": "Domino.Pages.SavedGames",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
-        "HashCode": 2105340167,
-        "Kind": "Components.Component",
-        "Name": "Domino.Pages.FetchData",
-        "AssemblyName": "Domino",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "FetchData"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "Domino.Pages.FetchData"
-        }
-      },
-      {
-        "HashCode": -1011755255,
-        "Kind": "Components.Component",
-        "Name": "Domino.Pages.FetchData",
-        "AssemblyName": "Domino",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "Domino.Pages.FetchData"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "Domino.Pages.FetchData",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },

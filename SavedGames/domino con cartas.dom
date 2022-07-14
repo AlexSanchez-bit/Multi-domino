@@ -1,0 +1,6 @@
+Name:domino con cartas
+KeySet:Cartas
+Board:Normal
+WinCondition:Normal
+PlayerSelector:Ordenado
+KeyDispenser:b
