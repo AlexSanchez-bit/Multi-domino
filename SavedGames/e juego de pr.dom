@@ -1,0 +1,6 @@
+Name:e juego de pr
+KeySet:Doble 9
+Board:Mesa de cartas
+WinCondition:multiplo de 5
+PlayerSelector:Aleatorio
+KeyDispenser:b

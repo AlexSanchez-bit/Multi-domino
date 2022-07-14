@@ -73,6 +73,10 @@ public class GameBuilder
         {
             win_condition= new CardGameWinCondition(); 
         }
+        if(cf.WinCondition=="Robaito")
+        {
+            win_condition= new RobaitoWinCondition();
+        }
          if(cf.WinCondition=="multiplo de 5")
         {
             win_condition= new Multp5WinCondition(); 
@@ -87,10 +91,10 @@ public class GameBuilder
         player_selector.attach(graphic_interface);
     }
 
-    public Manager BuildGame(IEnumerable<IPlayer> players,Action<IPlayer,IEnumerable<IKey>> dispenser )
+    public Manager BuildGame(IEnumerable<IPlayer> players,Action<IPlayer,IEnumerable<IKey>,int> dispenser,int cant_fichas)
     {
         juego=new Manager(game_board,players,win_condition,player_selector,keyset);
-        juego.InitializeGame(dispenser);
+        juego.InitializeGame(dispenser,cant_fichas);
             return juego;
     }
 }

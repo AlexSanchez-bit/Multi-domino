@@ -44,7 +44,7 @@ public class RobaitoPlayer : IPlayer
             var stealed_key  = RobaitoPlayer.list_of_keys.Pop();            
             hand.Add(stealed_key);
             if(table.ValidPlay(stealed_key))break;
-        }
+        }        
             Player.SetData(hand);
         
     }  

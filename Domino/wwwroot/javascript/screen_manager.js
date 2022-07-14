@@ -25,11 +25,10 @@
 
       }
 
-      function add_background_player_key(player,faces,id)
+      function add_background_player_key(player,faces)
        {
         var key= document.createElement("div");
          key.classList.add("bg_player_key");
-         key.id=id;
         for(var a of faces)
          {
             var img= document.createElement("img");
@@ -39,6 +38,25 @@
 
          document.getElementById(player).appendChild(key);
         }
+
+       function remove_backround_player_keys(player)
+        {
+          var player = document.getElementById(player);
+          var to_remove=[];
+          for(let comp of player.childNodes)
+          {
+            if(comp.classList.contains("bg_player_key"))
+            {
+              to_remove.push(comp);
+            }
+          }
+
+          for(let a of to_remove)
+          {
+            player.removeChild(a);
+          }
+
+         } 
       
       function hide_backround_player(player)
       {
@@ -47,10 +65,10 @@
       }
 
       function show_backround_player(player)
-{
+       {
 
          document.getElementById(player).style.display="flex";
-}
+      }
 
         function change_name(a)
         {
@@ -133,8 +151,7 @@
             return key;
         }
         function Add_playerKeys(faces)
-        {
-
+        {             
             var container = document.getElementById("player_keys").appendChild(create_decoration_key(faces));
         }
 

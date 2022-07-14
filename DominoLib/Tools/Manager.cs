@@ -23,11 +23,11 @@
         }
      }
 
-    public void InitializeGame(Action<IPlayer,IEnumerable<IKey>> repartir_fichas)
+    public void InitializeGame(Action<IPlayer,IEnumerable<IKey>,int> repartir_fichas,int cant_fichas)
     {
         foreach(var player in this.player_list)
         {
-            repartir_fichas(player,this.keyset);
+            repartir_fichas(player,this.keyset,cant_fichas);
         }        
         RobaitoPlayer.list_of_keys= new Stack<IKey>();        
         foreach(var a in keyset)

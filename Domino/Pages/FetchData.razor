@@ -1,5 +1,6 @@
 ﻿@page "/fetchdata"
 @inject IJSRuntime JS
+@inject NavigationManager nm 
 <PageTitle> Domino Game</PageTitle>
 <style>
 body
@@ -27,8 +28,10 @@ body
   <label >Forma de repartir la ficha</label>
   <select @bind="repartition">
     <option>Random</option>
+    <option>Punto Aleatorio</option>
   </select>
-
+  <label>Cantidad de fichas por jugador</label>
+  <input type="number" min="1" max="@max_count" @bind="Cant_Fichas">
   <button @onclick="InitGame" class="btn btn-success btn-outline-info">IniciarPartida</button>
 </div>
 
@@ -59,7 +62,7 @@ body
 
 <!-- mostrar fichas de la mesa-->
 <!--Mostrar fichas del resto de jugadores -->
-<div id="players_section" >
+<div id="players_section">
   @foreach(var a in Players){
   <div id=@a.GetIdentifier() class="backgorund_player">
     <h5 class="bg_player_name">@a.GetIdentifier()</h5>
@@ -86,27 +89,42 @@ body
 </div>
 @code {
 //valores de inicialisacion
+        public int max_count=1;
+        int cant_fichas=1;
+        int max_key_cont=0;
+        public int Cant_Fichas{
+        get{return cant_fichas;}
+        set{
+           if(value<max_count)cant_fichas=value;
+        }}
         public string[]names = new string[6];
         public string[]types = new string[]{"Random","Random","Random","Random","Random","Random"};
         public string repartition="Random";
         public int player_count=1;
-        public string PlayerCount{get{return player_count.ToString();}set{player_count=int.Parse(value);}}
+        public string PlayerCount{get{return player_count.ToString();}
+                      set{
+                      player_count=int.Parse(value);
+                      max_count=max_key_cont/player_count;
+                      cant_fichas=max_count;
+                      }}
        public int board_count=0;
 
        //printers y auxiliares de la grafica
        public BlazorPrinter printer = new BlazorPrinter();              
-        public Action<IPlayer,IEnumerable<IKey>> KeyDispenser=Dispensers.NormalDispenser;   
+        public Action<IPlayer,IEnumerable<IKey>,int> KeyDispenser=Dispensers.NormalDispenser;   
           public IEnumerable<IPlayer> Players;              
         public Manager manager;
         public Thread hilo_juego;
         private IFace[] playable_faces;
         private IKey centerKey=null;
+        private GameBuilder game_builder;
 
 
         private string GetFaceImage(IFace face)
         {
           return face.GetRepresentation()+".png";
         }
+
 
         protected override void OnInitialized()
         {
@@ -118,33 +136,38 @@ body
         printer.NotifyWinner=this.NotifyWinner;        
         printer.SetBoardCount=SetBoardCount;
         Players=new IPlayer[0]; 
-        }
-
-
-        public void InitGame()
+        if(Data_Saver.game_data==null)
         {
-            
-
-        JS.InvokeVoidAsync("remove_backround_key","gameinit");
-          var players_array=new (string,string)[player_count];
-          for(int i=0;i<player_count;i++)
-          {
-            players_array[i]=(names[i],types[i]);
-          }
+        nm.NavigateTo("edit_screen");
+        }
             var data = new string[6];
             for(int i=0;i<5;i++)
             {
               data[i]=Data_Saver.game_data[i];
             }
             data[5]=repartition;
-
-
           var configs = new ConfigFile(data);
-          var game_builder = new GameBuilder(configs);
+           game_builder = new GameBuilder(configs);
           game_builder.ConnectGame (printer); 
+            max_key_cont=game_builder.keyset.GenerateKeyset().Count();
+                      max_count=max_key_cont/player_count;
+                      cant_fichas=max_count;
+        }
+
+
+        public void InitGame()
+        {
+        JS.InvokeVoidAsync("remove_backround_key","gameinit");
+            KeyDispenser=repartition=="Random"?Dispensers.NormalDispenser:Dispensers.PointDispenser;
+          var players_array=new (string,string)[player_count];
+          for(int i=0;i<player_count && player_count<6;i++)
+          {
+                         Console.WriteLine(names[i]+i);
+            players_array[i]=(names[i],types[i]);
+          }
           var players = new PlayerListBuilder(players_array,game_builder);
           Players=players.GetPlayers();
-        manager = game_builder.BuildGame(players.GetPlayers(),KeyDispenser);                   
+        manager = game_builder.BuildGame(players.GetPlayers(),KeyDispenser,cant_fichas);                   
         hilo_juego=new Thread(()=>{
         manager.SimulateGame();
         });
@@ -205,10 +228,11 @@ body
         public void Removeplayerkeys()
         {
         JS.InvokeVoidAsync("remove_playerKeys");
+        JS.InvokeVoidAsync("remove_backround_player_keys",Playername);
         }
         
         public void ChangeName(string a)
-        {        
+        {              
         JS.InvokeVoidAsync("show_backround_player",Playername);
         JS.InvokeVoidAsync("hide_backround_player",a);
           Playername=a;
@@ -221,6 +245,7 @@ body
           {
             var info=Create_Key(a,false);          
             JS.InvokeVoidAsync("Add_playerKeys",info);
+            JS.InvokeVoidAsync("add_background_player_key",Playername,info);
           }
         }
        private string Playername="12";

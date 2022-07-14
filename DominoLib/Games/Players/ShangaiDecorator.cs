@@ -9,8 +9,7 @@ public class ShangaiDecorator : IPlayer
     public ShangaiDecorator(IPlayer player)
     {        
         hand=new List<IKey>();
-        Player = new RobaitoPlayer(player);    
-        internal_player= player;
+        Player = player;    
     }
     public string GetIdentifier()
     {
@@ -29,6 +28,16 @@ public class ShangaiDecorator : IPlayer
 
     public void SimulateRound(ITable table)
     {
+        if(!can_play(table))
+        {
+            var hand = new List<IKey>();
+
+            if(RobaitoPlayer.list_of_keys.Count()>0){
+            hand.Add(RobaitoPlayer.list_of_keys.Pop());
+            }           
+            SetData(hand);
+            return;
+        }
         if(parobar!=0)
         {
             if(RobaitoPlayer.list_of_keys.Count()!=0){
@@ -42,6 +51,25 @@ public class ShangaiDecorator : IPlayer
                 }
             parobar=0;
         }
+        if(familion)
+        {
+            while(can_play(table))
+            {
+                Player.SimulateRound(table);
+            }
+            familion=false;
+            return;
+        }
+    
         Player.SimulateRound(table);
+    }
+
+    bool can_play(ITable table)
+    {
+        foreach(var a in GetKeys())
+        {
+            if(table.ValidPlay(a))return true;
+        }
+        return false;
     }
 }

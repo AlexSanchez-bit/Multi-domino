@@ -1,16 +1,16 @@
 
 
 
-public class CardGameWinCondition : IWinCondition
+public class RobaitoWinCondition : IWinCondition
 {
     IPlayer winner;
     List<IWinnerObserver> observers;
     int minimalScore=int.MaxValue;
 
-    string IRule.Description { get => "regla del shangai para seleccionar el ganador(el que primero se quede sin cartas o tenga menos cuando se acabe el banco)"; }
-    string IRule.Name { get => "Shangai"; }
+    string IRule.Description { get => "seleccion de ganador del robaito , gana el que se quede sin fichas o tenga menos puntos al quedarse el banco sin fichas"; }
+    string IRule.Name { get => "Robaito"; }
 
-    public CardGameWinCondition()
+    public RobaitoWinCondition()
     {
         observers= new List<IWinnerObserver>();
         winner = new NormalPlayer("error");
@@ -32,13 +32,12 @@ public class CardGameWinCondition : IWinCondition
               Console.WriteLine("aun se puede jugar");
                 return false;
             }
-            var aux = a.GetKeys().Count();
+            var aux = PlayerHandValue(a);
             if(aux<=minimalScore)
             {
                 minimalScore=aux;
                 winner=a;
             }
-
         }
         if(RobaitoPlayer.list_of_keys.Count()==0){
            notify(winner);

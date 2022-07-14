@@ -11,7 +11,7 @@ public class CardGameTable : ITable
 
     LinkedList<ITableObserver> observers;
 
-    string IRule.Description { get => "mesa para juegos de cartas";}
+    string IRule.Description { get => "mesa con las reglas del shangai \n el A cambia el color a uno aleatorio ";}
     string IRule.Name { get => "Mesa de cartas";}
 
     public CardGameTable()
@@ -36,6 +36,11 @@ public class CardGameTable : ITable
            if(card.GetValue()==2 || card.GetValue()==3)
            {
                ShangaiDecorator.parobar+=card.GetValue();
+           }
+           if(card.GetValue()==14)
+           {
+                var rand=new Random();
+                card=new CardFace(1,3); 
            }
     }
 

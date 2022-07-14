@@ -7,9 +7,15 @@ public class PlayerListBuilder
         players=new LinkedList<IPlayer>();
             foreach(var a in player_info)
             {
-                if(game_data.game_board.Name=="Mesa de cartas")
+                if(game_data.game_board.Name=="Mesa de cartas" || game_data.win_condition.Name=="Shangai")
                 {
                 players.AddLast(new ShangaiDecorator(BuildPlayer(a.Item1,a.Item2)));                
+                continue;
+                }
+                if(game_data.win_condition.Name=="Robaito")
+                {
+                 
+                players.AddLast(new RobaitoPlayer(BuildPlayer(a.Item1,a.Item2)));                
                 continue;
                 }
                 players.AddLast(BuildPlayer(a.Item1,a.Item2));                

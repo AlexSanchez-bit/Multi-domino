@@ -34,13 +34,6 @@ public class CardGamePlayerSelector : IPlayerSelector,ITableObserver
 
     public IPlayer GetNextPlayer()
     {
-        if(familion && lastPlayer.GetKeys().Count()==last_player_count-1)
-        {
-            last_player_count=lastPlayer.GetKeys().Count();
-            return lastPlayer;
-        }else{
-            familion=false;
-        }
        var ret = jugadores[index];
        lastPlayer=ret;        
        if(!inverted){
@@ -87,6 +80,7 @@ public class CardGamePlayerSelector : IPlayerSelector,ITableObserver
         }
         if(last_played.GetValue()==7){
             familion=true;
+            ShangaiDecorator.familion=true;
             last_player_count=lastPlayer.GetKeys().Count()+1;
         }
     }

@@ -1,5 +1,5 @@
-Name:juego gay
-KeySet:Fichas de colores
+Name:juego aleatorio
+KeySet:Aleatorio
 Board:Normal
 WinCondition:Normal
 PlayerSelector:Aleatorio
