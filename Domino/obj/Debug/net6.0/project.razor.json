@@ -45,35 +45,35 @@
         }
       },
       {
-        "HashCode": 2105340167,
+        "HashCode": 1001265142,
         "Kind": "Components.Component",
-        "Name": "Domino.Pages.FetchData",
+        "Name": "Domino.Pages.EditionScreen",
         "AssemblyName": "Domino",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "FetchData"
+            "TagName": "EditionScreen"
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "Domino.Pages.FetchData"
+          "Common.TypeName": "Domino.Pages.EditionScreen"
         }
       },
       {
-        "HashCode": -1011755255,
+        "HashCode": -1613282072,
         "Kind": "Components.Component",
-        "Name": "Domino.Pages.FetchData",
+        "Name": "Domino.Pages.EditionScreen",
         "AssemblyName": "Domino",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "Domino.Pages.FetchData"
+            "TagName": "Domino.Pages.EditionScreen"
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "Domino.Pages.FetchData",
+          "Common.TypeName": "Domino.Pages.EditionScreen",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
@@ -144,35 +144,35 @@
         }
       },
       {
-        "HashCode": 1001265142,
+        "HashCode": 2105340167,
         "Kind": "Components.Component",
-        "Name": "Domino.Pages.EditionScreen",
+        "Name": "Domino.Pages.FetchData",
         "AssemblyName": "Domino",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "EditionScreen"
+            "TagName": "FetchData"
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "Domino.Pages.EditionScreen"
+          "Common.TypeName": "Domino.Pages.FetchData"
         }
       },
       {
-        "HashCode": -1613282072,
+        "HashCode": -1011755255,
         "Kind": "Components.Component",
-        "Name": "Domino.Pages.EditionScreen",
+        "Name": "Domino.Pages.FetchData",
         "AssemblyName": "Domino",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "Domino.Pages.EditionScreen"
+            "TagName": "Domino.Pages.FetchData"
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "Domino.Pages.EditionScreen",
+          "Common.TypeName": "Domino.Pages.FetchData",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },

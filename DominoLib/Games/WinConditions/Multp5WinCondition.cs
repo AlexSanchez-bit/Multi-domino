@@ -8,7 +8,7 @@ public class Multp5WinCondition : IWinCondition,IPlayerChangedObserver
 
     public string Description => "condicion de parada de los multiplos de 5";
 
-    public string Name => "multiplo de 5";
+    public string Name => "mult5";
 
     public Multp5WinCondition()
     {
@@ -19,7 +19,19 @@ public class Multp5WinCondition : IWinCondition,IPlayerChangedObserver
     }
     public bool GameEnded(IEnumerable<IPlayer> players, ITable mesa)
     {
+        
         int score =0;
+        if(player_score.Count ==0)
+        {
+        foreach(var a in players)
+          {
+            
+            
+                player_score.Add(a,0);
+                winner = a;
+            
+          }
+        }
         foreach(var b in mesa.CurrentFaces())
         {
           score += b.GetValue();
@@ -42,10 +54,14 @@ public class Multp5WinCondition : IWinCondition,IPlayerChangedObserver
             }
             
             Console.WriteLine("{0} no le quedan jugadas",a.GetIdentifier());
-            var aux = PlayerHandValue(a);
-           
+            Winner(player_score);
+                    
 
         }
+        foreach(var a in player_score)
+             {
+               System.Console.WriteLine("{0} : {1}",a.Key.GetIdentifier(),a.Value);
+             }  
          notify(winner);
         return true;       
     }

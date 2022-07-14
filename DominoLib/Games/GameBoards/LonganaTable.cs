@@ -1,15 +1,14 @@
-class LonganaTable : ITable
+class LonganaTable : ITable,IPlayerChangedObserver
 {
 
     LinkedList<IKey> board;
-    IFace right;
-    IFace left;
-
-    IFace up;
-    IFace down;
-    List<int> heads;
+   const bool locked=false;
+    IPlayer last_player;
+    int cant_fichas;             
+     Dictionary<IPlayer,(IFace,bool)> playable_heads;        
     List<bool> availables;
-    LinkedList<IObserver<KeyPlayedEvent>> observers;
+
+    LinkedList<ITableObserver> observers;
 
     public string Description => "mesa con las reglas de la longana";
 
@@ -18,80 +17,65 @@ class LonganaTable : ITable
     public LonganaTable()
     {
         board = new LinkedList<IKey>();
-        observers = new LinkedList<IObserver<KeyPlayedEvent>>();
-        heads = new List<int>();
+        observers = new LinkedList<ITableObserver>();
+        playable_heads=new Dictionary<IPlayer,(IFace,bool)>();
         availables =  new List<bool>();
+    }
+
+    public void SetPlayers(IEnumerable<IPlayer> player_list)
+    {
+        foreach(var a in  player_list)
+        {
+            playable_heads.Add(a,(null,locked));
+        }
+
+        foreach(var a in observers)
+        {        
+              a.SetSpaces(player_list.Count());    
+        }
     }
     public void PlayKey(IKey key)
     {
         if(ValidPlay(key))
         {
              Insert(key);
-             //una posicion para poner heads[i]
-             
-             //una posicion para poner availables[i] false
-            board.AddLast(key);                   
-           // notify();  
+             board.AddLast(key);
         }
     }
 
     private void Insert(IKey key)
-    {
-        int head =0;
-      if(board.Count==0)
-      {
-          right=(key.GetFace(0));
-          left=(key.GetFace(0));
-          up = (key.GetFace(0));
-          down = (key.GetFace(0));
-          for(int i = 0;i < 4;i++)
-          {
-              heads.Add(right.GetValue());
-              availables.Add(false);
-          }
-           notify(key,1); 
-           return;
-      }
-       for(int i =0 ;i < 4 ;i++)
-       {
-           if(availables[i])
-           {
-             head = i;
-             break;
-           }
-       }
-       if(head == 0)
-       {
-           if(key.GetFace(0).Equals(heads[0]))
-           {
-               up = key.GetFace(1);
-           }
-           up = key.GetFace(0);
-       }
-       if(head == 1)
-       {
-           if(key.GetFace(0).Equals(heads[1]))
-           {
-               up = key.GetFace(1);
-           }
-           up = key.GetFace(0);
-       }
-       if(head == 2)
-       {
-           if(key.GetFace(0).Equals(heads[2]))
-           {
-               up = key.GetFace(1);
-           }
-           up = key.GetFace(0);
-       }
-       if(head == 3)
-       {
-           if(key.GetFace(0).Equals(heads[3]))
-           {
-               up = key.GetFace(1);
-           }
-           up = key.GetFace(0);
-       }
+    {           
+        Console.WriteLine("{2} jugo :{0}{1}",key.GetFace(0).GetRepresentation(),key.GetFace(1).GetRepresentation(),last_player.GetIdentifier());
+        if(board.Count()==0)
+        {
+            foreach(var a in playable_heads.Keys)
+            {
+                var data=(key.GetFace(0),locked);
+                playable_heads[a]=data;
+            }
+            notify(key,1);
+            return;
+        }
+
+        int to_play_index=1;
+
+        foreach(var a in playable_heads)
+        {        
+            if(a.Key.Equals(last_player) || a.Value.Item2!=locked)
+            {
+                var actual_face =a.Value.Item1;
+                 var key_faces = key.GetAllFaces();
+                 if(key_faces.First().Equals(actual_face))
+                 {
+                     playable_heads[a.Key]=(key_faces.Last(),a.Value.Item2);
+                 }else{
+                     playable_heads[a.Key]=(key_faces.First(),a.Value.Item2);
+                 }
+                notify(key,to_play_index);
+                return;
+            }
+            to_play_index++;
+        }
      
     }
 
@@ -102,21 +86,33 @@ class LonganaTable : ITable
 
     public bool ValidPlay(IKey key)
     {
-        if(board.Count()==0)return true;
-        for(int i = 0;i < availables.Count;i++)
+     if(board.Count()==0)
+     {
+        if(IsDouble(key))
         {
-            if(availables[i])
-            {
-                if(key.GetAllFaces().Any((elem)=>heads[i].Equals(elem)))
-                return true;
-            }
+            return true;    
+        }    
+        return false;
+     }else
+     {
+         var duenno= playable_heads.Keys.Where(elem=>elem.GetKeys().Contains(key)).First();
+         var verifable_heads=playable_heads.Where(elem=>elem.Value.Item2!=locked || elem.Key==duenno).Select(elem=>elem.Value.Item1).ToList();
+
+        foreach(var a in verifable_heads)
+        {
+            if(key.GetAllFaces().Any(elem=>elem.Equals(a)))return true;
         }
         return false;
+     }
     }
 
+    private bool IsDouble(IKey key)
+    {
+        return key.GetAllFaces().All(elem=>elem.Equals(key.GetFace(0)));
+    }
     public IEnumerable<IFace> CurrentFaces()
     {
-         return new IFace[]{right,left,up,down};
+       return playable_heads.Values.Select(elem=>elem.Item1);
     }
 
     public IEnumerable<IKey> OnTableKeys()
@@ -143,14 +139,36 @@ class LonganaTable : ITable
     }
 
     public void attach(ITableObserver observer)
-    {
-        observer.SetSpaces(2);
+    {      
          observers.AddLast(observer);
     }
 
     public void dettach(ITableObserver obsetver)
     {
          observers.Remove(obsetver);
+    }
+
+    public void Update(IEvent<IPlayer> eventinfo)
+    {
+         var actual_player=eventinfo.GetEventData(); 
+        if(last_player==null)
+        {
+            last_player=actual_player;
+            cant_fichas=last_player.GetKeys().Count();
+            return;
+        }              
+        if(actual_player.Equals(last_player))
+        {
+            
+        }else if(cant_fichas >= last_player.GetKeys().Count()){
+            var state=playable_heads[last_player];
+            playable_heads[last_player]=(state.Item1,locked);
+        }else{
+              var state=playable_heads[last_player];
+            playable_heads[last_player]=(state.Item1,!locked);
+        }
+        last_player=actual_player;
+        cant_fichas=actual_player.GetKeys().Count();
     }
 }
 

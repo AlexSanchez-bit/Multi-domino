@@ -6,7 +6,7 @@ public class Multp5Table : ITable
 
     public string Description => "tablero con regla de multiplo de 5";
 
-    public string Name => "multiplo de 5";
+    public string Name => "mult5";
 
     public Multp5Table()
     {
@@ -16,7 +16,7 @@ public class Multp5Table : ITable
     }
     public void attach(ITableObserver observer)
     {
-        observer.SetSpaces(6);
+        observer.SetSpaces(4);
          observers.AddLast(observer);
     }
 
@@ -50,29 +50,33 @@ public class Multp5Table : ITable
     {
         return board;
     }
-    public  void Insert(IKey key)
+    public void Insert(IKey key)
     {
          if(board.Count == 0)
          {
-             foreach(var a in key.GetAllFaces())
-             {
-                 heads.Add(a);
-                 notify(key,3);
-             }
+             notify(key,1);
+             heads.Add(key.GetFace(0));
+             heads.Add(key.GetFace(0));
+             heads.Add(key.GetFace(0));
+             heads.Add(key.GetFace(0));
          }
          for(int i=0;i<heads.Count;i++)
          {
              if(key.GetFace(0).Equals(heads[i]))
              {
                  heads[i] = key.GetFace(1);
+                 notify(key,i+1);
+                 break;
              }
+             else if(key.GetFace(1).Equals(heads[i]))
+             {
+                 heads[i] = key.GetFace(0);
+                 notify(key,i+1);
+                 break;
+             }
+             
          }
-         notify(key,1);
-         notify(key,2);
-         notify(key,3);
-         notify(key,4);
-           notify(key,5);
-             notify(key,6);
+         
     }
     public void PlayKey(IKey key)
     {
@@ -80,8 +84,7 @@ public class Multp5Table : ITable
         {
           Insert(key);
           board.AddLast(key);
-          var rand = new Random();
-          notify(key,rand.Next(1,4));
+         
         }
     }
 
@@ -92,7 +95,7 @@ public class Multp5Table : ITable
 
     public bool ValidPlay(IKey key)
     {
-        if(board.Count()==0)return true;
+        if(board.Count()==0)return key.GetAllFaces().All(elem => elem.Equals(key.GetFace(0)));
         for(int i = 0;i < heads.Count;i++)
         {
             

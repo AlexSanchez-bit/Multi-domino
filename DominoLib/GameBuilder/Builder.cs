@@ -82,6 +82,13 @@ public class GameBuilder
             win_condition= new Multp5WinCondition(); 
             player_selector.attach((IPlayerChangedObserver)win_condition);
         }
+
+
+         //conexiones auiliares
+         if(cf.GameTable=="Longana")
+         {
+             player_selector.attach((IPlayerChangedObserver)game_board);
+         }
     }
 
     public void ConnectGame(IScreen graphic_interface)
@@ -92,7 +99,11 @@ public class GameBuilder
     }
 
     public Manager BuildGame(IEnumerable<IPlayer> players,Action<IPlayer,IEnumerable<IKey>,int> dispenser,int cant_fichas)
-    {
+    {        
+        if(game_board.Name=="Longana")
+        {
+            ((LonganaTable)game_board).SetPlayers(players);
+        }
         juego=new Manager(game_board,players,win_condition,player_selector,keyset);
         juego.InitializeGame(dispenser,cant_fichas);
             return juego;
