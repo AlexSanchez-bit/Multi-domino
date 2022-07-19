@@ -46,7 +46,6 @@ class LonganaTable : ITable,IPlayerChangedObserver
 
     private void Insert(IKey key)
     {           
-        Console.WriteLine("{2} jugo :{0}{1}",key.GetFace(0).GetRepresentation(),key.GetFace(1).GetRepresentation(),last_player.GetIdentifier());
         if(board.Count()==0)
         {
             foreach(var a in playable_heads.Keys)
@@ -96,6 +95,7 @@ class LonganaTable : ITable,IPlayerChangedObserver
         return false;
      }else
      {
+         try{
          var duenno= playable_heads.Keys.Where(elem=>elem.GetKeys().Contains(key)).First();
          var verifable_heads=playable_heads.Where(elem=>elem.Value.Item2!=locked || elem.Key==duenno).Select(elem=>elem.Value.Item1).ToList();
 
@@ -104,6 +104,10 @@ class LonganaTable : ITable,IPlayerChangedObserver
             if(key.GetAllFaces().Any(elem=>elem.Equals(a)))return true;
         }
         return false;
+         }catch(Exception e)
+         {
+             return false;
+         }
      }
     }
 
