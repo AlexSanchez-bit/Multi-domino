@@ -1,6 +1,7 @@
 
 public class KeyPlayedEvent : IEvent<(IKey,int)>
 {
+    //evento especializado para cuando se juege una ficha
 
     IKey playedKey;
     int position;   

@@ -1,6 +1,7 @@
 
 public class BFPlayer : IPlayer
 {
+    //jugador botagordajuega la ficha que mas valor tenga
     public  List<IKey> Keyset;
     string name;
     IComparer<IKey> comparer;    

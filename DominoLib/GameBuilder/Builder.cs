@@ -3,6 +3,7 @@
 
 public class GameBuilder
 {
+    //esta clase se encarga de construir el juego en dependencia de la configuracion seleccionada
     
     Manager juego;
       public ITable game_board{get;private set;}
@@ -12,6 +13,7 @@ public class GameBuilder
 
     public GameBuilder(ConfigFile cf)
     {
+        //toma el configFile y aplica las reglas para construir el juego
         //tableros
         if(cf.GameTable=="Normal")
         {
@@ -93,6 +95,7 @@ public class GameBuilder
 
     public void ConnectGame(IScreen graphic_interface)
     {
+        //conecta el juego a la parte grafica
         game_board.attach(graphic_interface);
         win_condition.attach(graphic_interface);
         player_selector.attach(graphic_interface);
@@ -100,6 +103,7 @@ public class GameBuilder
 
     public Manager BuildGame(IEnumerable<IPlayer> players,Action<IPlayer,IEnumerable<IKey>,int> dispenser,int cant_fichas)
     {        
+        //construye y devuelve el juego
         if(game_board.Name=="Longana")
         {
             ((LonganaTable)game_board).SetPlayers(players);

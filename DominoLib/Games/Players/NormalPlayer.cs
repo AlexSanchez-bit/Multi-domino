@@ -3,6 +3,7 @@
 
 public class NormalPlayer : IPlayer
 {
+    //jugador normal de doble 9
 
     string name;
     List<IKey> hand;

@@ -3,6 +3,8 @@
 
 public class EuristicPlayer : IPlayer,IPlayerChangedObserver
 {
+    //jugador euristico (cuenta cuantas veces se pasa alguien con una cara y juega en consecuencia)
+    //para esto implementa el observer de cuando se cambian los turnos
 
     string name;
     List<IKey> hand;
@@ -84,6 +86,7 @@ public class EuristicPlayer : IPlayer,IPlayerChangedObserver
         }
     }
 
+    //update que se llama cuando se cambia un turno
     public void Update(IEvent<IPlayer> eventinfo)
     {
          var actual = eventinfo.GetEventData();

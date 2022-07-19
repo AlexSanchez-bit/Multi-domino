@@ -1,5 +1,6 @@
 class LonganaTable : ITable,IPlayerChangedObserver
 {
+    //mesa con rgla de la longana para esto implementa el observer de cuando se cambia un turno
 
     LinkedList<IKey> board;
    const bool locked=false;
@@ -148,6 +149,7 @@ class LonganaTable : ITable,IPlayerChangedObserver
          observers.Remove(obsetver);
     }
 
+    //update que se llama cuando un turno se cambia
     public void Update(IEvent<IPlayer> eventinfo)
     {
          var actual_player=eventinfo.GetEventData(); 

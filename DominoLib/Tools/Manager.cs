@@ -1,4 +1,5 @@
  public class Manager
+ //el manaager se encarga de tomar todas las reglas y unificarlas para construir el juego
  {
      ITable board;
      List<IKey> keyset;
@@ -8,6 +9,7 @@
 
      public Manager(ITable board,IEnumerable<IPlayer> players,IWinCondition winCondition, IPlayerSelector playerSelector,IKeyGenerator generator)
      {
+         //construye el juego con las reglas dadas por el constructor
          this.board=board;        
          this.win_condition=winCondition;
          this.next_player = playerSelector;
@@ -25,6 +27,7 @@
 
     public void InitializeGame(Action<IPlayer,IEnumerable<IKey>,int> repartir_fichas,int cant_fichas)
     {
+        //inicializa el juego y reparte las fichas a los jugadores
         foreach(var player in this.player_list)
         {
             repartir_fichas(player,this.keyset,cant_fichas);
@@ -37,8 +40,10 @@
         }
         next_player.SetPlayerList(player_list);
     }
+
     public IPlayer SimulateGame()
     {
+        //simula un juego completo
         do
         {
                 SimulateRound();
@@ -48,6 +53,7 @@
     }
     public void SimulateRound()
     {
+        //simula una ronda del juego
         var currentPlayer= next_player.GetNextPlayer();
         currentPlayer.SimulateRound(board);       
     }

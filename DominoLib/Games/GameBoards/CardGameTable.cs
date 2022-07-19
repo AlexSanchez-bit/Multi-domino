@@ -25,22 +25,26 @@ public class CardGameTable : ITable
         {
              Insert(key);
             board.AddLast(key);                   
-           // notify();  
         }
     }
 
     private void Insert(IKey key)
     {    
-          card=(key.GetFace(0));
+        if( card==null ||  card.Equals(key.GetFace(0)))
+        {
+            card=key.GetFace(key.GetAllFaces().Count()-1);
+        }else{
+            card=key.GetFace(0);
+        }
            notify(key,2);                           
-           if(card.GetValue()==2 || card.GetValue()==3)
+           if(card.GetValue()==2 || card.GetValue()==3)//si se juegan fichas con valor 2 o 3 se agregan en la cantidad de robar
            {
                ShangaiDecorator.parobar+=card.GetValue();
            }
-           if(card.GetValue()==14)
+           if(card.GetValue()==14)//si es el A o cualquier ficha de valor 14 cambia el color de la carta
            {
                 var rand=new Random();
-                card=new CardFace(1,3); 
+                card=new CardFace(1,rand.Next(1,4)); 
            }
     }
 
@@ -52,7 +56,7 @@ public class CardGameTable : ITable
     public bool ValidPlay(IKey key)
     {
         if(board.Count()==0)return true;
-        return key.GetFace(0).Equals(card);
+        return key.GetFace(key.GetAllFaces().Count()-1).Equals(card);
     }
 
     public IEnumerable<IFace> CurrentFaces()

@@ -1,9 +1,10 @@
 public class RobaitoPlayer : IPlayer
 {
+    //decorador para agregar a cualquier player las reglas del robaito
     IPlayer Player;
     
     List<IKey> hand;
-    public static Stack<IKey> list_of_keys;
+    public static Stack<IKey> list_of_keys;//lista estatica de las fichas remanentes todos los jugadores con el decorador observaran la misma lista
 
     public RobaitoPlayer(IPlayer player)
     {        
@@ -24,7 +25,7 @@ public class RobaitoPlayer : IPlayer
     {
        Player.SetData(player_hand);
     }
-    private bool HaveSteal(ITable table)
+    private bool HaveSteal(ITable table) //para saber si tiene que robar fichas
     {
         if(RobaitoPlayer.list_of_keys.Count()==0)return false;
         foreach(var a in Player.GetKeys())
@@ -36,7 +37,7 @@ public class RobaitoPlayer : IPlayer
         }
         return true;
     } 
-    private void Steal(ITable table)
+    private void Steal(ITable table)//roba una ficha mientras no tenga jugadas
     {
         if(!HaveSteal(table))return;
         List<IKey> hand =  new List<IKey>();

@@ -1,4 +1,4 @@
-public class CustomEvent<T> : IEvent<T>
+public class CustomEvent<T> : IEvent<T> //evento generico
 {
     T eventData;
 

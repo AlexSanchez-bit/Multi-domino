@@ -1,6 +1,6 @@
 
 
-public interface IEvent<T>
+public interface IEvent<T> //interfaz que describe un evento y los datos asociados a este
 {
-  T GetEventData();
+  T GetEventData();//devuelve el dato que guarda el evento
 }

@@ -1,14 +1,15 @@
 public class ScreenPrinter:IScreen
+                           //implementacion de un printer para la terminal
 {
 
 
-    List<IFace>[] game_board;    
-    bool ended =false;
+    List<IFace>[] game_board;    //caras jugables
+    bool ended =false; 
     public ScreenPrinter()
     {        
     }
 
-    public void Start()
+    public void Start()//en este caso inicializa el bucle principal de la grafica 
     {
          while(!ended)
         {
@@ -18,6 +19,7 @@ public class ScreenPrinter:IScreen
         }
     }
     
+    //imprime la mesa
     public void PrintTable()
     {
         int width = Console.WindowWidth;
@@ -35,7 +37,7 @@ public class ScreenPrinter:IScreen
     }
 
 
-
+  //imprime la informacion del jugador
     public void PrintPlayer(IPlayer player)
     {
         int width = Console.WindowWidth;
@@ -50,6 +52,7 @@ public class ScreenPrinter:IScreen
         Console.SetCursorPosition(0,0);
     }
    
+    //para imprimir fichas en vertical
    private void PrintVerticalKey(IKey key,bool up=false)
    {
         foreach(var b in key.GetAllFaces()){
@@ -59,6 +62,7 @@ public class ScreenPrinter:IScreen
          }
    }
 
+   //para imprimir fichas horizontales
    public void PrintHorizontalKey(IKey key)
    {
         foreach(var b in key.GetAllFaces())
@@ -68,6 +72,7 @@ public class ScreenPrinter:IScreen
 
 
 #region implementations
+   //evento para cuando se juege una ficha
     public void Update(KeyPlayedEvent eventinfo)
     {
           var key = eventinfo.GetEventData().Item1;
@@ -107,12 +112,13 @@ public class ScreenPrinter:IScreen
     }
 
 
+    //evento para cuando se cambie de turno
     public void Update(IEvent<IPlayer> eventinfo)
     {       
         this.PrintPlayer(eventinfo.GetEventData());
     }
 
-
+    //evento para cuando finalice la partida
      public void Update(IPlayer eventinfo)
     {   
         Console.Clear();            
@@ -127,7 +133,7 @@ public class ScreenPrinter:IScreen
     }
 
 
-
+    //para indicar cuantos carriles de fichas habra
     public void SetSpaces(int spacesnumb)
     {
        game_board=new List<IFace>[spacesnumb];
@@ -137,6 +143,7 @@ public class ScreenPrinter:IScreen
         }
     }
 
+    //termina la ejecucion 
     public void Stop()
     {
         ended=true;

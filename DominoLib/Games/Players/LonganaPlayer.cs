@@ -1,5 +1,6 @@
 public class LonganaPlayer : IPlayer
 {
+    //jugador de la longana
     string name;
     int Turn;
     List<IKey> hand;

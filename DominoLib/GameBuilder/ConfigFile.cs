@@ -4,12 +4,14 @@
 
 public class ConfigFile
 {
+  //permite crear una configuracion y salvarla como un archivo
 
 string save_direction="../SavedGames";
 
 
     public void SaveData()
     {
+      //salva los datos de un juego en un archivo
         string data=string.Format("Name:{0}\n",this.GameName);
         data+=Parse();
         StreamWriter sw = new StreamWriter(save_direction+"/"+this.GameName+".dom");        
@@ -18,7 +20,7 @@ string save_direction="../SavedGames";
     }
     private string Parse()
     {
-
+      //convierte el objeto en un string que se puede escribir en un archivo
         string game_file="";
 
         game_file+=string.Format("KeySet:{0}\n",this.Keyset);
@@ -29,6 +31,8 @@ string save_direction="../SavedGames";
         return game_file;
     }
 
+
+    //datos a guardar
   public string GameName{get;private set;}
   public string GameTable{get;private set;}
   public string Keyset{get;private set;}

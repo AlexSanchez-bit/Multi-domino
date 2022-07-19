@@ -1,12 +1,14 @@
 
 public class ShangaiDecorator : IPlayer
 {
+    //decorador para agregar a cualquier player las regla del shangai
     IPlayer Player;
     IPlayer internal_player;
     public static int parobar=0; 
     public static bool familion=false;
     List<IKey> hand;
-    public ShangaiDecorator(IPlayer player)
+
+    public ShangaiDecorator(IPlayer player)//tiene un jugador interno 
     {        
         hand=new List<IKey>();
         Player = player;    
